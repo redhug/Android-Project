@@ -41,4 +41,5 @@ public class ProfileActivity extends AppCompatActivity {
         Intent tip_intent = new Intent(this, MainActivity.class);
         startActivityForResult(tip_intent, 1);
     }
+
 }

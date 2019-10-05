@@ -27,6 +27,10 @@ public class Find_Book extends AppCompatActivity {
         Intent tip_intent = new Intent(this, ProfileActivity.class);
         startActivityForResult(tip_intent, 1);
     }
+    public void onClickBook(View v){
+        Intent tip_intent = new Intent(this, Owner.class);
+        startActivityForResult(tip_intent, 1);
+    }
     public void onClickRequests(View v){
         Intent tip_intent = new Intent(this, Add_Book.class);
         startActivityForResult(tip_intent, 1);
