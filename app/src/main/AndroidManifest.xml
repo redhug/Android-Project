@@ -12,6 +12,7 @@
         <activity android:name=".Book_Info_Activity"></activity>
         <activity android:name=".Find_Book" />
         <activity android:name=".Add_Book" />
+        <activity android:name=".ProfileActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,7 +7,7 @@
     tools:context=".UserActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/homeBtn"
         android:layout_width="78dp"
         android:layout_height="61dp"
         android:background="@drawable/home"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.037" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/findbookbtn"
         android:layout_width="68dp"
         android:layout_height="60dp"
         android:background="@drawable/search"
@@ -31,7 +31,7 @@
         app:layout_constraintVertical_bias="0.038" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/addBookBtn"
         android:layout_width="76dp"
         android:layout_height="57dp"
         android:background="@drawable/folder"
@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.041" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/profileBtn"
         android:layout_width="68dp"
         android:layout_height="58dp"
         android:background="@drawable/profilepng"
@@ -55,7 +55,7 @@
         app:layout_constraintVertical_bias="0.041" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/requestBookBtn"
         android:layout_width="83dp"
         android:layout_height="61dp"
         android:background="@drawable/request"

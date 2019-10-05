@@ -7,10 +7,11 @@
     tools:context=".Add_Book">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/homeBtn"
         android:layout_width="78dp"
         android:layout_height="61dp"
         android:background="@drawable/home"
+        android:onClick="onClickHome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -19,10 +20,11 @@
         app:layout_constraintVertical_bias="0.037" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/findbookbtn"
         android:layout_width="68dp"
         android:layout_height="60dp"
         android:background="@drawable/search"
+        android:onClick="onClickFindBook"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.253"
@@ -31,7 +33,7 @@
         app:layout_constraintVertical_bias="0.038" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/addBookBtn"
         android:layout_width="76dp"
         android:layout_height="57dp"
         android:background="@drawable/folder"
@@ -43,10 +45,11 @@
         app:layout_constraintVertical_bias="0.041" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/profileBtn"
         android:layout_width="68dp"
         android:layout_height="58dp"
         android:background="@drawable/profilepng"
+        android:onClick="onClickProfile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.991"
@@ -212,14 +215,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="185dp"
-        android:layout_height="151dp"
+        android:layout_width="110dp"
+        android:layout_height="101dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintHorizontal_bias="0.598"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.758"
+        app:layout_constraintVertical_bias="0.73"
         app:srcCompat="@drawable/bookimage" />
 
     <Button
@@ -235,7 +238,7 @@
         app:layout_constraintVertical_bias="0.912" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/requestBookBtn"
         android:layout_width="83dp"
         android:layout_height="61dp"
         android:background="@drawable/request"
