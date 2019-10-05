@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
         Intent tip_intent = new Intent(this, Add_Book.class);
         startActivityForResult(tip_intent, 1);
     }
+    public void onClickBookInfo(View v){
+        Intent tip_intent = new Intent(this, Book_Info_Activity.class);
+        startActivityForResult(tip_intent, 1);
+    }
     public void onClickProfile(View v){
         Intent tip_intent = new Intent(this, ProfileActivity.class);
         startActivityForResult(tip_intent, 1);
