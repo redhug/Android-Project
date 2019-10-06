@@ -46,4 +46,9 @@ public class MainActivity extends AppCompatActivity {
         catch (Exception e){
         }
     }
+
+    public void onClickRequest_Book(View view) {
+        Intent tip_intent = new Intent(this, Activity_Request.class);
+        startActivityForResult(tip_intent, 1);
+    }
 }

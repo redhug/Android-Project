@@ -42,4 +42,8 @@ public class ProfileActivity extends AppCompatActivity {
         startActivityForResult(tip_intent, 1);
     }
 
+    public void onClickRequest_Book(View view) {
+        Intent tip_intent = new Intent(this, Activity_Request.class);
+        startActivityForResult(tip_intent, 1);
+    }
 }

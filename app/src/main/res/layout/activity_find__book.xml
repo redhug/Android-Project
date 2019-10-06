@@ -322,6 +322,7 @@
         android:layout_width="83dp"
         android:layout_height="61dp"
         android:background="@drawable/request"
+        android:onClick="onClickRequest_Book"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

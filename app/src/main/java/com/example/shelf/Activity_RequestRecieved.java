@@ -7,35 +7,30 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-public class Owner extends AppCompatActivity {
+public class Activity_RequestRecieved extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_owner);
+        setContentView(R.layout.activity__request_recieved);
     }
-    public void onClickFindBook(View v){
-        Intent tip_intent = new Intent(this, Find_Book.class);
-        startActivityForResult(tip_intent, 1);
-    }
-    public void onClickAdd_Book(View v){
-        Intent tip_intent = new Intent(this, Add_Book.class);
-        startActivityForResult(tip_intent, 1);
-    }
-    public void onClickProfile(View v){
-        Intent tip_intent = new Intent(this, ProfileActivity.class);
-        startActivityForResult(tip_intent, 1);
-    }
-    public void onClickHome(View v){
+    public void onClickHome(View view) {
         Intent tip_intent = new Intent(this, MainActivity.class);
         startActivityForResult(tip_intent, 1);
     }
-    public void onClickRequests(View v){
-        Intent tip_intent = new Intent(this, Add_Book.class);
+
+    public void onClickFindBook(View view) {
+        Intent tip_intent = new Intent(this, Owner.class);
         startActivityForResult(tip_intent, 1);
     }
-    public void onClickOwner(View v){
-        Intent tip_intent = new Intent(this, UserActivity.class);
+
+    public void onClickProfile(View view) {
+        Intent tip_intent = new Intent(this, ProfileActivity.class);
+        startActivityForResult(tip_intent, 1);
+    }
+
+    public void onClickAdd_Book(View view) {
+        Intent tip_intent = new Intent(this, Add_Book.class);
         startActivityForResult(tip_intent, 1);
     }
     public void onActivityResult(int requestCode,int resultCode,Intent tipInt) {
@@ -50,7 +45,7 @@ public class Owner extends AppCompatActivity {
         }
     }
 
-    public void onClickRequest_Book(View view) {
+    public void onClickMy_Request(View view) {
         Intent tip_intent = new Intent(this, Activity_Request.class);
         startActivityForResult(tip_intent, 1);
     }
