@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity_RequestRecieved"></activity>
+        <activity android:name=".home"></activity>
+        <activity android:name=".Activity_RequestRecieved" />
         <activity android:name=".Activity_Request" />
         <activity android:name=".Owner" />
         <activity android:name=".Book_Info_Activity" />

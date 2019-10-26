@@ -1,18 +1,18 @@
 package com.example.shelf;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class ProfileActivity extends AppCompatActivity {
+public class home extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_home);
     }
     public void onClickFindBook(View v){
         Intent tip_intent = new Intent(this, Find_Book.class);
@@ -22,8 +22,16 @@ public class ProfileActivity extends AppCompatActivity {
         Intent tip_intent = new Intent(this, Add_Book.class);
         startActivityForResult(tip_intent, 1);
     }
-    public void onLogout(View v){
-        Intent tip_intent = new Intent(this, MainActivity.class);
+    public void onClickBook(View v){
+        Intent tip_intent = new Intent(this, Book_Info_Activity.class);
+        startActivityForResult(tip_intent, 1);
+    }
+    public void onClickProfile(View v){
+        Intent tip_intent = new Intent(this, ProfileActivity.class);
+        startActivityForResult(tip_intent, 1);
+    }
+    public void onClickRequests(View v){
+        Intent tip_intent = new Intent(this, Add_Book.class);
         startActivityForResult(tip_intent, 1);
     }
     public void onActivityResult(int requestCode,int resultCode,Intent tipInt) {
@@ -36,10 +44,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
         catch (Exception e){
         }
-    }
-    public void onClickHome(View v){
-        Intent tip_intent = new Intent(this, MainActivity.class);
-        startActivityForResult(tip_intent, 1);
     }
 
     public void onClickRequest_Book(View view) {
