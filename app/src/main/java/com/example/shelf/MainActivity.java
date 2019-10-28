@@ -18,18 +18,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onlogin(View view) {
-        Intent tip_intent = new Intent(this, home.class);
-        startActivityForResult(tip_intent, 1);
         EditText email=findViewById(R.id.email);
-        if(email.toString().isEmpty())
+        EditText pwd=findViewById(R.id.password);
+        if(email.getText().toString().isEmpty())
         {
             email.setError("Enter the valid Email ID");
         }
-        EditText pwd=findViewById(R.id.password);
-        if(pwd.toString().isEmpty())
+        else if(pwd.getText().toString().isEmpty())
         {
             pwd.setError("Enter the password");
         }
+        else
+        {
+            Intent tip_intent = new Intent(this, home.class);
+            startActivityForResult(tip_intent, 1);
+        }
+
     }
 
     public void onSignup(View view) {
