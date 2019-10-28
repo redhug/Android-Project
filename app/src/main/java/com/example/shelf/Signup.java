@@ -6,21 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
         import android.content.Intent;
         import android.os.Bundle;
-        import android.text.TextUtils;
-        import android.view.View;
+import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
-        import android.widget.RadioGroup;
-        import android.widget.Toast;
 
-        import java.util.regex.Matcher;
+import java.util.regex.Matcher;
         import java.util.regex.Pattern;
 
 public class Signup extends AppCompatActivity {
 
     EditText fullName;
     EditText mobile;
-    EditText username;
+    EditText email;
     EditText pass;
     EditText confirmPass;
     Button signUp;
@@ -31,7 +28,7 @@ public class Signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         fullName=findViewById(R.id.fullNameET);
         mobile=findViewById(R.id.mobileET);
-        username=findViewById(R.id.userIdET);
+        email =findViewById(R.id.userIdET);
         pass=findViewById(R.id.passwordET);
         confirmPass=findViewById(R.id.confirmPswdET);
         signUp=findViewById(R.id.signUpBTN1);
@@ -41,7 +38,7 @@ public class Signup extends AppCompatActivity {
         //Fullname Field validation
         final String fName=fullName.getText().toString();
         final String mobNum=mobile.getText().toString();
-        final String user=username.getText().toString();
+        String user= email.getText().toString();
         final String p=pass.getText().toString();
         final String Cpass=confirmPass.getText().toString();
         if(fName.length()==0){
@@ -67,8 +64,8 @@ public class Signup extends AppCompatActivity {
         //UserId validation
 
         else if(user.length()==0){
-            username.requestFocus();
-            username.setError("Name field cannot be empty!!");
+            email.requestFocus();
+            email.setError("Name field cannot be empty!!");
         }
 
         //Password validation
@@ -86,8 +83,9 @@ public class Signup extends AppCompatActivity {
         else {
             try {
                 Intent toOtherIntent = new Intent(this, MainActivity.class);
+                toOtherIntent.putExtra("Email",user);
+                toOtherIntent.putExtra("Password",p);
                 startActivity(toOtherIntent);
-
             } catch (Exception e) {
 
             }
@@ -102,6 +100,6 @@ public class Signup extends AppCompatActivity {
         matcher = pattern.matcher(password);
 
         return matcher.matches();
-
     }
+
 }

@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".home"></activity>
+        <activity android:name=".Signup"></activity>
         <activity android:name=".Activity_RequestRecieved" />
         <activity android:name=".Activity_Request" />
         <activity android:name=".Owner" />
