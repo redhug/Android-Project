@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="Home"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/findBook"
+        android:icon="@drawable/search"
+        android:title="Find Book"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/requests"
+        android:icon="@drawable/request"
+        android:title="Requests"
+        app:showAsAction="always"></item>
+    <item
+        android:id="@+id/addBook"
+        android:icon="@drawable/folder"
+        android:title="Add Book"
+        app:showAsAction="always"></item>
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/profilepng"
+        android:title="Profile"
+        app:showAsAction="always"></item>
+</menu>
