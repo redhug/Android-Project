@@ -15,26 +15,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onlogin(View view) {
+    public void loginClick(View view) {
         EditText email=findViewById(R.id.email);
         EditText pwd=findViewById(R.id.password);
-        Intent signup=getIntent();
-        String a=signup.getStringExtra("Email");
-        String p=signup.getStringExtra("Password");
-        if(a.equals(email.getText().toString())&&p.equals(pwd.getText().toString()))
-        {
-            Intent tip_intent = new Intent(this, HomeActivity.class);
-            startActivityForResult(tip_intent, 1);
-        }
-        else {
-            email.setError("Enter the valid Email ID");
-            pwd.setError("Enter the password");
-        }
+//        Intent signup=getIntent();
+//        String a=signup.getStringExtra("Email");
+//        String p=signup.getStringExtra("Password");
+//        if(a.equals(email.getText().toString())&&p.equals(pwd.getText().toString()))
+//        {
+            Intent homeIntent = new Intent(this, HomeActivity.class);
+            startActivityForResult(homeIntent, 1);
+//        }
+//        else {
+//            email.setError("Enter the valid Email ID");
+//            pwd.setError("Enter the password");
+//        }
 
     }
 
     public void onSignup(View view) {
-        Intent tip_intent = new Intent(this, SignupActivity.class);
-        startActivityForResult(tip_intent, 1);
+        Intent signUp = new Intent(this, SignupActivity.class);
+        startActivityForResult(signUp, 1);
     }
 }
