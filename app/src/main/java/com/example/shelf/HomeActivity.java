@@ -9,12 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class Activity_Request extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__request);
+        setContentView(R.layout.activity_home);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -25,13 +25,13 @@ public class Activity_Request extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
-            case R.id.home:
-                Intent home = new Intent(this, HomeActivity.class);
-                startActivityForResult(home, 1);
-                return(true);
             case R.id.findBook:
                 Intent findBook = new Intent(this, Find_Book.class);
                 startActivityForResult(findBook, 1);
+                return(true);
+            case R.id.requests:
+                Intent requests = new Intent(this, Activity_Request.class);
+                startActivityForResult(requests, 1);
                 return(true);
             case R.id.addBook:
                 Intent addBook = new Intent(this, Add_Book.class);
@@ -45,6 +45,10 @@ public class Activity_Request extends AppCompatActivity {
         return(super.onOptionsItemSelected(item));
     }
 
+    public void onClickBook(View v){
+        Intent bookInfo = new Intent(this, Book_Info_Activity.class);
+        startActivityForResult(bookInfo, 1);
+    }
     public void onActivityResult(int requestCode,int resultCode,Intent tipInt) {
         try {
             if (requestCode == 1) {
@@ -57,8 +61,4 @@ public class Activity_Request extends AppCompatActivity {
         }
     }
 
-    public void onClickRequestRecieved(View view) {
-        Intent requestsRecieved = new Intent(this, Activity_RequestRecieved.class);
-        startActivityForResult(requestsRecieved, 1);
-    }
 }

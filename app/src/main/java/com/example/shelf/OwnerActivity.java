@@ -9,12 +9,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class home extends AppCompatActivity {
+public class OwnerActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_owner);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -25,6 +25,10 @@ public class home extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
+            case R.id.home:
+                Intent home = new Intent(this, HomeActivity.class);
+                startActivityForResult(home, 1);
+                return(true);
             case R.id.findBook:
                 Intent findBook = new Intent(this, Find_Book.class);
                 startActivityForResult(findBook, 1);
@@ -41,14 +45,13 @@ public class home extends AppCompatActivity {
                 Intent profile = new Intent(this, ProfileActivity.class);
                 startActivityForResult(profile, 1);
                 return(true);
-
         }
         return(super.onOptionsItemSelected(item));
     }
 
-    public void onClickBook(View v){
-        Intent tip_intent = new Intent(this, Book_Info_Activity.class);
-        startActivityForResult(tip_intent, 1);
+    public void onClickOwner(View v){
+        Intent userIntent = new Intent(this, UserActivity.class);
+        startActivityForResult(userIntent, 1);
     }
     public void onActivityResult(int requestCode,int resultCode,Intent tipInt) {
         try {

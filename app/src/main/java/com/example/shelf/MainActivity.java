@@ -4,11 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         String p=signup.getStringExtra("Password");
         if(a.equals(email.getText().toString())&&p.equals(pwd.getText().toString()))
         {
-            Intent tip_intent = new Intent(this, home.class);
+            Intent tip_intent = new Intent(this, HomeActivity.class);
             startActivityForResult(tip_intent, 1);
         }
         else {
@@ -37,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSignup(View view) {
-        Intent tip_intent = new Intent(this, Signup.class);
+        Intent tip_intent = new Intent(this, SignupActivity.class);
         startActivityForResult(tip_intent, 1);
     }
 }

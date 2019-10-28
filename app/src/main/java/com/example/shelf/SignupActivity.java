@@ -13,7 +13,7 @@ import android.view.View;
 import java.util.regex.Matcher;
         import java.util.regex.Pattern;
 
-public class Signup extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
 
     EditText fullName;
     EditText mobile;

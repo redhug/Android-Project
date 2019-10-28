@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,15 +34,40 @@ public class Add_Book extends AppCompatActivity {
         bookCondition = findViewById(R.id.editText4);
         submit = findViewById(R.id.button5);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.home:
+                Intent home = new Intent(this, HomeActivity.class);
+                startActivityForResult(home, 1);
+                return(true);
+            case R.id.findBook:
+                Intent findBook = new Intent(this, Find_Book.class);
+                startActivityForResult(findBook, 1);
+                return(true);
+            case R.id.requests:
+                Intent requests = new Intent(this, Activity_Request.class);
+                startActivityForResult(requests, 1);
+                return(true);
+            case R.id.profile:
+                Intent profile = new Intent(this, ProfileActivity.class);
+                startActivityForResult(profile, 1);
+                return(true);
+        }
+        return(super.onOptionsItemSelected(item));
+    }
     public void buttonSave_onClick(View v) {
         final String btitle=bookTitle.getText().toString();
         final String bisbn=isbn.getText().toString();
         final String bauthor=author.getText().toString();
         final String bedition=edition.getText().toString();
         final String bcondition=bookCondition.getText().toString();
-
-
-
         if(btitle.length()==0){
             bookTitle.requestFocus();
             bookTitle.setError("cannot be empty!!");
@@ -50,11 +77,6 @@ public class Add_Book extends AppCompatActivity {
             bookTitle.requestFocus();
             bookTitle.setError("ENTER ONLY ALPHABETICAL CHARACTER");
         }
-
-
-
-
-
         if(bauthor.length()==0){
             author.requestFocus();
             author.setError("cannot be empty!!");
@@ -64,8 +86,6 @@ public class Add_Book extends AppCompatActivity {
             author.requestFocus();
             author.setError("ENTER ONLY ALPHABETICAL CHARACTER");
         }
-
-
         if(bisbn.length()==0){
             isbn.requestFocus();
             isbn.setError("cannot be empty!!");
@@ -74,9 +94,6 @@ public class Add_Book extends AppCompatActivity {
             isbn.requestFocus();
            // isbn.setError("isbn field should contain only numerical values");
         }
-
-
-
         if(bedition.length()==0){
             edition.requestFocus();
             edition.setError("cannot be empty!!");
@@ -86,8 +103,6 @@ public class Add_Book extends AppCompatActivity {
         else if (!Pattern.matches("[0-20]+",bedition)){
             edition.requestFocus();
         }
-
-
         if(bcondition.length()==0){
             bookCondition.requestFocus();
             bookCondition.setError("cannot be empty!!");
@@ -97,9 +112,6 @@ public class Add_Book extends AppCompatActivity {
             bookCondition.requestFocus();
             bookCondition.setError("ENTER ONLY ALPHABETICAL CHARACTER");
         }
-
-
-
 //        if(btitle.length()==0){
 //            bookTitle.requestFocus();
 //            bookTitle.setError("Name field cannot be empty!!");
@@ -129,26 +141,8 @@ public class Add_Book extends AppCompatActivity {
             } catch (Exception e) {
             }
         }
+    }
 
-
-
-    }
-        public void onClickFindBook(View v){
-        Intent tip_intent = new Intent(this, Find_Book.class);
-        startActivityForResult(tip_intent, 1);
-    }
-    public void onClickHome(View v){
-        Intent tip_intent = new Intent(this, MainActivity.class);
-        startActivityForResult(tip_intent, 1);
-    }
-    public void onClickProfile(View v){
-        Intent tip_intent = new Intent(this, ProfileActivity.class);
-        startActivityForResult(tip_intent, 1);
-    }
-    public void onClickRequests(View v){
-        Intent tip_intent = new Intent(this, Add_Book.class);
-        startActivityForResult(tip_intent, 1);
-    }
     public void onActivityResult(int requestCode,int resultCode,Intent tipInt) {
         try {
             if (requestCode == 1) {
@@ -161,12 +155,7 @@ public class Add_Book extends AppCompatActivity {
         }
     }
 
-    public void onClickRequest_Book(View view) {
-        Intent tip_intent = new Intent(this, Activity_Request.class);
-        startActivityForResult(tip_intent, 1);
-    }
-
-    }
+}
 
 
 
