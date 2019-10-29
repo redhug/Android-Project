@@ -6,57 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Add_Book">
 
-    <Button
-        android:id="@+id/homeBtn"
-        android:layout_width="78dp"
-        android:layout_height="61dp"
-        android:background="@drawable/home"
-        android:onClick="onClickHome"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.037" />
-
-    <Button
-        android:id="@+id/findbookbtn"
-        android:layout_width="68dp"
-        android:layout_height="60dp"
-        android:background="@drawable/search"
-        android:onClick="onClickFindBook"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.253"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038" />
-
-    <Button
-        android:id="@+id/addBookBtn"
-        android:layout_width="76dp"
-        android:layout_height="57dp"
-        android:background="@drawable/folder"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.764"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041" />
-
-    <Button
-        android:id="@+id/profileBtn"
-        android:layout_width="68dp"
-        android:layout_height="58dp"
-        android:background="@drawable/profilepng"
-        android:onClick="onClickProfile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.991"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="131dp"
@@ -135,20 +84,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.395" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="231dp"
-        android:layout_height="39dp"
-        android:ems="10"
-        android:hint="Enter the ISBN number"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.766"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.398" />
-
     <TextView
         android:id="@+id/textView5"
         android:layout_width="87dp"
@@ -160,20 +95,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.468" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="231dp"
-        android:layout_height="39dp"
-        android:ems="10"
-        android:hint="Enter the edition number"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.766"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.472" />
 
     <TextView
         android:id="@+id/textView6"
@@ -238,28 +159,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.912" />
 
-    <Button
-        android:id="@+id/requestBookBtn"
-        android:layout_width="83dp"
-        android:layout_height="61dp"
-        android:background="@drawable/request"
-        android:onClick="onClickRequest_Book"
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="224dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:hint="Enter isbn number"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.737"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.039" />
+        app:layout_constraintVertical_bias="0.4" />
 
-    <TextView
-        android:id="@+id/displayTV"
-        android:layout_width="200dp"
-        android:layout_height="21dp"
-        android:textColor="#F81313"
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter book edition"
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.321"
+        app:layout_constraintHorizontal_bias="0.696"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.822" />
+        app:layout_constraintVertical_bias="0.476" />
 </androidx.constraintlayout.widget.ConstraintLayout>

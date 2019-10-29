@@ -4,9 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,40 +14,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    public void onClickFindBook(View v){
-        Intent tip_intent = new Intent(this, Find_Book.class);
-        startActivityForResult(tip_intent, 1);
-    }
-    public void onClickAdd_Book(View v){
-        Intent tip_intent = new Intent(this, Add_Book.class);
-        startActivityForResult(tip_intent, 1);
-    }
-    public void onClickBook(View v){
-        Intent tip_intent = new Intent(this, Book_Info_Activity.class);
-        startActivityForResult(tip_intent, 1);
-    }
-    public void onClickProfile(View v){
-        Intent tip_intent = new Intent(this, ProfileActivity.class);
-        startActivityForResult(tip_intent, 1);
-    }
-    public void onClickRequests(View v){
-        Intent tip_intent = new Intent(this, Add_Book.class);
-        startActivityForResult(tip_intent, 1);
-    }
-    public void onActivityResult(int requestCode,int resultCode,Intent tipInt) {
-        try {
-            if (requestCode == 1) {
-                if (resultCode == 0) {
-                    Log.d("Success", "got result");
-                }
-            }
-        }
-        catch (Exception e){
-        }
+
+    public void loginClick(View view) {
+        EditText email=findViewById(R.id.email);
+        EditText pwd=findViewById(R.id.password);
+//        Intent signup=getIntent();
+//        String a=signup.getStringExtra("Email");
+//        String p=signup.getStringExtra("Password");
+//        if(a.equals(email.getText().toString())&&p.equals(pwd.getText().toString()))
+//        {
+            Intent homeIntent = new Intent(this, HomeActivity.class);
+            startActivityForResult(homeIntent, 1);
+//        }
+//        else {
+//            email.setError("Enter the valid Email ID");
+//            pwd.setError("Enter the password");
+//        }
+
     }
 
-    public void onClickRequest_Book(View view) {
-        Intent tip_intent = new Intent(this, Activity_Request.class);
-        startActivityForResult(tip_intent, 1);
+    public void onSignup(View view) {
+        Intent signUp = new Intent(this, SignupActivity.class);
+        startActivityForResult(signUp, 1);
     }
 }
