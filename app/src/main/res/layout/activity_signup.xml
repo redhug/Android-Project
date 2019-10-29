@@ -4,142 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
-
-    <Button
-        android:id="@+id/signUpBTN1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="gotoSuccessfulSignUpActivityAction"
-        android:text="Sign-Up"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.842"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.879" />
-
-    <EditText
-        android:id="@+id/confirmPswdET"
-        android:layout_width="243dp"
-        android:layout_height="40dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73" />
-
-    <EditText
-        android:id="@+id/passwordET"
-        android:layout_width="243dp"
-        android:layout_height="40dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.649" />
-
-    <EditText
-        android:id="@+id/userIdET"
-        android:layout_width="243dp"
-        android:layout_height="40dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.557" />
-
-    <EditText
-        android:id="@+id/mobileET"
-        android:layout_width="243dp"
-        android:layout_height="40dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.473" />
-
-    <EditText
-        android:id="@+id/fullNameET"
-        android:layout_width="243dp"
-        android:layout_height="40dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
-
-    <TextView
-        android:id="@+id/userIdTV"
-        android:layout_width="88dp"
-        android:layout_height="28dp"
-        android:text="UserId:"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.074"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.547" />
-
-    <TextView
-        android:id="@+id/mobileTV"
-        android:layout_width="88dp"
-        android:layout_height="28dp"
-        android:text="Mobile:"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.074"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.465" />
-
-    <TextView
-        android:id="@+id/genderTV"
-        android:layout_width="88dp"
-        android:layout_height="28dp"
-        android:text="Gender:"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.074"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.379" />
-
-    <TextView
-        android:id="@+id/confirmPswdTV"
-        android:layout_width="96dp"
-        android:layout_height="41dp"
-        android:text="Confirm Password:"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73" />
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/projectnameTV"
@@ -169,18 +34,32 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.293" />
 
+    <EditText
+        android:id="@+id/fullNameET"
+        android:layout_width="243dp"
+        android:layout_height="40dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.809"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.28" />
+
     <TextView
-        android:id="@+id/passwordTV"
+        android:id="@+id/genderTV"
         android:layout_width="88dp"
         android:layout_height="28dp"
-        android:text="Password:"
+        android:text="Gender:"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.074"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.638" />
+        app:layout_constraintVertical_bias="0.379" />
 
     <RadioGroup
         android:id="@+id/RadioGender"
@@ -212,5 +91,126 @@
             android:layout_height="wrap_content"
             android:text="Other" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/mobileTV"
+        android:layout_width="88dp"
+        android:layout_height="28dp"
+        android:text="Mobile:"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.074"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.465" />
+
+    <EditText
+        android:id="@+id/mobileET"
+        android:layout_width="243dp"
+        android:layout_height="40dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.809"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.473" />
+
+    <TextView
+        android:id="@+id/userIdTV"
+        android:layout_width="88dp"
+        android:layout_height="28dp"
+        android:text="UserId:"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.074"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.547" />
+
+    <EditText
+        android:id="@+id/userIdET"
+        android:layout_width="243dp"
+        android:layout_height="40dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.809"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.557" />
+
+    <TextView
+        android:id="@+id/passwordTV"
+        android:layout_width="88dp"
+        android:layout_height="28dp"
+        android:text="Password:"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.074"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.638" />
+
+    <EditText
+        android:id="@+id/passwordET"
+        android:layout_width="243dp"
+        android:layout_height="40dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.809"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.649" />
+
+    <TextView
+        android:id="@+id/confirmPswdTV"
+        android:layout_width="96dp"
+        android:layout_height="41dp"
+        android:text="Confirm Password:"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.73" />
+
+    <EditText
+        android:id="@+id/confirmPswdET"
+        android:layout_width="243dp"
+        android:layout_height="40dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.809"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.73" />
+
+    <Button
+        android:id="@+id/signUpBTN1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="gotoSuccessfulSignUpActivityAction"
+        android:text="Sign-Up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.879" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
