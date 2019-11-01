@@ -1,105 +1,163 @@
 package com.example.shelf;
 
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.location.Address;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+import android.widget.Button;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-import android.view.View;
-        import android.widget.Button;
-        import android.widget.EditText;
-
-import java.util.regex.Matcher;
-        import java.util.regex.Pattern;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class SignupActivity extends AppCompatActivity {
 
-    EditText fullName;
-    EditText mobile;
-    EditText email;
-    EditText pass;
-    EditText confirmPass;
-    Button signUp;
+    private EditText email;
+    private EditText password;
+    private EditText confirmpassword;
+    private EditText username;
+    private EditText mobile;
+    private EditText address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        fullName=findViewById(R.id.fullNameET);
+
+        final Button back_button = findViewById(R.id.back_button);
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final ProgressDialog dlg = new ProgressDialog(SignupActivity.this);
+                dlg.setTitle("Please, wait a moment.");
+                dlg.setMessage("Returning to the login section...");
+                dlg.show();
+                Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                dlg.dismiss();
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
+        email = findViewById(R.id.emailET);
+        password =  findViewById(R.id.passwordET);
+        confirmpassword =  findViewById(R.id.confirmPswdET);
+        username=findViewById(R.id.fullNameET);
         mobile=findViewById(R.id.mobileET);
-        email =findViewById(R.id.userIdET);
-        pass=findViewById(R.id.passwordET);
-        confirmPass=findViewById(R.id.confirmPswdET);
-        signUp=findViewById(R.id.signUpBTN1);
-    }
-    //SignIn action
-    public void gotoSuccessfulSignUpActivityAction(View v) {
-        //Fullname Field validation
-        final String fName=fullName.getText().toString();
-        final String mobNum=mobile.getText().toString();
-        String user= email.getText().toString();
-        final String p=pass.getText().toString();
-        final String Cpass=confirmPass.getText().toString();
-        if(fName.length()==0){
-            fullName.requestFocus();
-            fullName.setError("Name field cannot be empty!!");
-        }
-        else if(!fName.matches("[a-zA-Z ]+"))
-        {
-            fullName.requestFocus();
-            fullName.setError("ENTER ONLY ALPHABETICAL CHARACTER");
-        }
+        address=findViewById(R.id.AddressET);
 
-        //Mobile Number validation
+        final Button signup_button = findViewById(R.id.signUpBTN1);
+        signup_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Validating the log in data
+                boolean validationError = false;
 
-        else if(mobNum.length()==0|| mobNum.length()>11){
-            mobile.requestFocus();
-            mobile.setError("Mobile Field is Empty/ too Long");
-        }
-        else if (!Pattern.matches("[0-9]+",mobNum)){
-            mobile.setError("Mobile Field should contain only numerical values");
-        }
+                StringBuilder validationErrorMessage = new StringBuilder("Please, insert ");
+                if (isEmpty(email)) {
+                    validationError = true;
+                    validationErrorMessage.append("an username");
+                }
+                if (isEmpty(password)) {
+                    if (validationError) {
+                        validationErrorMessage.append(" and ");
+                    }
+                    validationError = true;
+                    validationErrorMessage.append("a password");
+                }
+                if (isEmpty(confirmpassword)) {
+                    if (validationError) {
+                        validationErrorMessage.append(" and ");
+                    }
+                    validationError = true;
+                    validationErrorMessage.append("your password again");
+                }
+                else {
+                    if (!isMatching(password, confirmpassword)) {
+                        if (validationError) {
+                            validationErrorMessage.append(" and ");
+                        }
+                        validationError = true;
+                        validationErrorMessage.append("the same password twice.");
+                    }
+                }
+                validationErrorMessage.append(".");
 
-        //UserId validation
+                if (validationError) {
+                    Toast.makeText(SignupActivity.this, validationErrorMessage.toString(), Toast.LENGTH_LONG).show();
+                    return;
+                }
 
-        else if(user.length()==0){
-            email.requestFocus();
-            email.setError("Name field cannot be empty!!");
-        }
+                //Setting up a progress dialog
+                final ProgressDialog dlg = new ProgressDialog(SignupActivity.this);
+                dlg.setTitle("Please, wait a moment.");
+                dlg.setMessage("Signing up...");
+                dlg.show();
 
-        //Password validation
-        else if(p.length()<8&&!isValidPassword(p)){
-            pass.requestFocus();
-            pass.setError("Enter Valid Password with atleast 1 capital letter, 1 small letter, 1 number and a symbol");
-        }
+                ParseUser user = new ParseUser();
+                user.setEmail(email.getText().toString());
+                user.setPassword(password.getText().toString());
+                user.setUsername(username.getText().toString());
+                user.put("Contact",(mobile.getText().toString()));
+                user.put("Address",(address.getText().toString()));
+                user.signUpInBackground(new SignUpCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if (e == null) {
+                            dlg.dismiss();
+                            alertDisplayer("Sucessful Signup","Successfully signed up " + email.getText().toString() + "!");
 
-        //Confirm Password Validation
-        else if(!(Cpass.equals(p))){
-            confirmPass.requestFocus();
-            confirmPass.setError("Password and Confirm Password does not match");
-        }
-
-        else {
-            try {
-                Intent toOtherIntent = new Intent(this, MainActivity.class);
-                toOtherIntent.putExtra("Email",user);
-                toOtherIntent.putExtra("Password",p);
-                startActivity(toOtherIntent);
-            } catch (Exception e) {
+                        } else {
+                            dlg.dismiss();
+                            ParseUser.logOut();
+                            Toast.makeText(SignupActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
 
             }
+        });
+    }
+
+    private boolean isEmpty(EditText text) {
+        if (text.getText().toString().trim().length() > 0) {
+            return false;
+        } else {
+            return true;
         }
     }
-    public static boolean isValidPassword(final String password) {
 
-        Pattern pattern;
-        Matcher matcher;
-        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
-        pattern = Pattern.compile(PASSWORD_PATTERN);
-        matcher = pattern.matcher(password);
-
-        return matcher.matches();
+    private boolean isMatching(EditText text1, EditText text2){
+        if(text1.getText().toString().equals(text2.getText().toString())){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
+    private void alertDisplayer(String title,String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(SignupActivity.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
+        AlertDialog ok = builder.create();
+        ok.show();
+    }
 }
