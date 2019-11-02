@@ -78,12 +78,6 @@ public class Add_Book extends AppCompatActivity {
             bookTitle.setError("cannot be empty!!");
             errors=true;
         }
-        else if(!btitle.matches("[a-zA-Z ]+"))
-        {
-            bookTitle.requestFocus();
-            bookTitle.setError("ENTER ONLY ALPHABETICAL CHARACTER");
-            errors=true;
-        }
         if(bauthor.length()==0){
             author.requestFocus();
             author.setError("cannot be empty!!");
@@ -100,7 +94,7 @@ public class Add_Book extends AppCompatActivity {
             isbn.setError("cannot be empty!!");
             errors=true;
         }
-        else if (!Pattern.matches("[0-20]+",bisbn)){
+        else if (!Pattern.matches("[0-9]+",bisbn)){
             isbn.requestFocus();
             errors=true;
             isbn.setError("isbn field should contain only numerical values");
@@ -110,7 +104,7 @@ public class Add_Book extends AppCompatActivity {
             edition.setError("cannot be empty!!");
             errors=true;
         }
-        else if (!Pattern.matches("[0-20]+",bedition)){
+        else if (!Pattern.matches("[0-9]+",bedition)){
             edition.requestFocus();
             errors=true;
             isbn.setError("bedition field should contain only numerical values");
