@@ -102,17 +102,17 @@ public class Add_Book extends AppCompatActivity {
         }
         else if (!Pattern.matches("[0-20]+",bisbn)){
             isbn.requestFocus();
+            errors=true;
             isbn.setError("isbn field should contain only numerical values");
         }
         if(bedition.length()==0){
             edition.requestFocus();
-            //edition.setError("cannot be empty!!");
+            edition.setError("cannot be empty!!");
             errors=true;
-            edition.setError("edition field should contain only numerical values");
-
         }
         else if (!Pattern.matches("[0-20]+",bedition)){
             edition.requestFocus();
+            errors=true;
             isbn.setError("bedition field should contain only numerical values");
         }
         if(bcondition.length()==0){
