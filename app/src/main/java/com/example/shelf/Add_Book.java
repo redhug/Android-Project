@@ -1,7 +1,10 @@
 package com.example.shelf;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,8 +13,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
+import com.parse.ParseException;
+import com.parse.SaveCallback;
+import com.parse.ParseObject;
 import java.util.regex.Pattern;
 
 public class Add_Book extends AppCompatActivity {
@@ -68,49 +72,59 @@ public class Add_Book extends AppCompatActivity {
         final String bauthor=author.getText().toString();
         final String bedition=edition.getText().toString();
         final String bcondition=bookCondition.getText().toString();
+        boolean errors=false;
         if(btitle.length()==0){
             bookTitle.requestFocus();
             bookTitle.setError("cannot be empty!!");
+            errors=true;
         }
         else if(!btitle.matches("[a-zA-Z ]+"))
         {
             bookTitle.requestFocus();
             bookTitle.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+            errors=true;
         }
         if(bauthor.length()==0){
             author.requestFocus();
             author.setError("cannot be empty!!");
+            errors=true;
         }
         else if(!bauthor.matches("[a-zA-Z ]+"))
         {
             author.requestFocus();
             author.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+            errors=true;
         }
         if(bisbn.length()==0){
             isbn.requestFocus();
             isbn.setError("cannot be empty!!");
+            errors=true;
         }
         else if (!Pattern.matches("[0-20]+",bisbn)){
             isbn.requestFocus();
-           // isbn.setError("isbn field should contain only numerical values");
+            isbn.setError("isbn field should contain only numerical values");
         }
         if(bedition.length()==0){
             edition.requestFocus();
             edition.setError("cannot be empty!!");
-         // edition.setError("edition field should contain only numerical values");
+            errors=true;
+            edition.setError("edition field should contain only numerical values");
 
         }
         else if (!Pattern.matches("[0-20]+",bedition)){
             edition.requestFocus();
+            isbn.setError("bedition field should contain only numerical values");
         }
         if(bcondition.length()==0){
             bookCondition.requestFocus();
             bookCondition.setError("cannot be empty!!");
+            errors=true;
         }
         else if(!bcondition.matches("[a-zA-Z ]+"))
         {
             bookCondition.requestFocus();
             bookCondition.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+            errors=true;
         }
 //        if(btitle.length()==0){
 //            bookTitle.requestFocus();
@@ -134,15 +148,48 @@ public class Add_Book extends AppCompatActivity {
 //        }
 //
 
-        else {
-            try {
-                Intent toOtherIntent = new Intent(this, Add_Book.class);
-                startActivity(toOtherIntent);
-            } catch (Exception e) {
-            }
+        if(!errors){
+            final ProgressDialog dlg = new ProgressDialog(Add_Book.this);
+            dlg.setTitle("Please, wait a moment.");
+            dlg.setMessage("Adding Book...");
+            dlg.show();
+            ParseObject addbook = new ParseObject("Add_Book");
+            addbook.put("title",btitle);
+            addbook.put("author",bauthor);
+            addbook.put("isbn",bisbn);
+            addbook.put("edition",bedition);
+            addbook.put("condition",bcondition);
+            addbook.put("useremail",MainActivity.email);
+            addbook.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e == null) {
+                        // Success
+                        dlg.dismiss();
+                        alertDisplayer("Book added successfully","");
+                    } else {
+                        // Error
+                    }
+                }
+            });
         }
     }
-
+    private void alertDisplayer(String title,String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(Add_Book.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        Intent intent = new Intent(Add_Book.this, Add_Book.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
+        AlertDialog ok = builder.create();
+        ok.show();
+    }
     public void onActivityResult(int requestCode,int resultCode,Intent tipInt) {
         try {
             if (requestCode == 1) {
