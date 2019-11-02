@@ -8,8 +8,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 public class Find_Book extends AppCompatActivity {
+    EditText title;
+    TextView titlename;
+    TextView authorname;
+    TextView editionnumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +60,31 @@ public class Find_Book extends AppCompatActivity {
         Intent ownerIntent = new Intent(this, OwnerActivity.class);
         startActivityForResult(ownerIntent, 1);
     }
+    public void search(View view) {
+        title=findViewById(R.id.search);
+        titlename=findViewById(R.id.title);
+        authorname=findViewById(R.id.author);
+        editionnumber=findViewById(R.id.edition);
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Add_Book");
+        query.whereEqualTo("title", title.getText().toString());
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            public void done(ParseObject book, ParseException e) {
+                if (e == null) {
+                    String title = book.getString("title");
+                    String author =  book.getString("author");
+                    String edition= book.getString("edition");
+                    titlename.setText(title);
+                    authorname.setText(author);
+                    editionnumber.setText(edition);
+
+                } else {
+                    // Something is wrong
+                }
+            }
+        });
+
+    }
+
     public void onActivityResult(int requestCode,int resultCode,Intent tipInt) {
         try {
             if (requestCode == 1) {
@@ -58,6 +94,7 @@ public class Find_Book extends AppCompatActivity {
             }
         }
         catch (Exception e){
+
         }
     }
 
