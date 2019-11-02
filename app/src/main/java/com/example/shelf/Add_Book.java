@@ -106,7 +106,7 @@ public class Add_Book extends AppCompatActivity {
         }
         if(bedition.length()==0){
             edition.requestFocus();
-            edition.setError("cannot be empty!!");
+            //edition.setError("cannot be empty!!");
             errors=true;
             edition.setError("edition field should contain only numerical values");
 
@@ -126,27 +126,6 @@ public class Add_Book extends AppCompatActivity {
             bookCondition.setError("ENTER ONLY ALPHABETICAL CHARACTER");
             errors=true;
         }
-//        if(btitle.length()==0){
-//            bookTitle.requestFocus();
-//            bookTitle.setError("Name field cannot be empty!!");
-//        }
-//        else if(bauthor.length()==0){
-//            author.requestFocus();
-//            author.setError("Name field cannot be empty!!");
-//        }
-//        else if(bisbn.length()==0){
-//            isbn.requestFocus();
-//            isbn.setError(" field cannot be empty!!");
-//        }
-//        else if(bedition.length()==0){
-//            edition.requestFocus();
-//            edition.setError(" field cannot be empty!!");
-//        }
-//        else if(bcondition.length()==0){
-//            bookCondition.requestFocus();
-//            bookCondition.setError("Name field cannot be empty!!");
-//        }
-//
 
         if(!errors){
             final ProgressDialog dlg = new ProgressDialog(Add_Book.this);
