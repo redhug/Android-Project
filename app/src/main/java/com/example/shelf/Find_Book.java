@@ -21,6 +21,8 @@ public class Find_Book extends AppCompatActivity {
     TextView titlename;
     TextView authorname;
     TextView editionnumber;
+    public static String useremail;
+    public static String booktitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,7 @@ public class Find_Book extends AppCompatActivity {
     }
 
     public void onClickBook(View v){
-        Intent ownerIntent = new Intent(this, OwnerActivity.class);
+        Intent ownerIntent = new Intent(this, UserActivity.class);
         startActivityForResult(ownerIntent, 1);
     }
     public void search(View view) {
@@ -66,7 +68,7 @@ public class Find_Book extends AppCompatActivity {
         authorname=findViewById(R.id.author);
         editionnumber=findViewById(R.id.edition);
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Add_Book");
-        query.whereEqualTo("title", title.getText().toString());
+        query.whereEqualTo("title", title.getText().toString().toUpperCase());
         query.getFirstInBackground(new GetCallback<ParseObject>() {
             public void done(ParseObject book, ParseException e) {
                 if (e == null) {
@@ -74,8 +76,10 @@ public class Find_Book extends AppCompatActivity {
                     String author =  book.getString("author");
                     String edition= book.getString("edition");
                     titlename.setText(title);
+                    booktitle=title;
                     authorname.setText(author);
                     editionnumber.setText(edition);
+                    useremail=book.getString("useremail");
 
                 } else {
                     // Something is wrong

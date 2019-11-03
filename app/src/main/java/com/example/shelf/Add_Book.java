@@ -127,7 +127,7 @@ public class Add_Book extends AppCompatActivity {
             dlg.setMessage("Adding Book...");
             dlg.show();
             ParseObject addbook = new ParseObject("Add_Book");
-            addbook.put("title",btitle);
+            addbook.put("title",btitle.toUpperCase());
             addbook.put("author",bauthor);
             addbook.put("isbn",bisbn);
             addbook.put("edition",bedition);

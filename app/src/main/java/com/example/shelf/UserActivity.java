@@ -1,20 +1,67 @@
 package com.example.shelf;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.util.List;
+
 public class UserActivity extends AppCompatActivity {
+
+    TextView contact;
+    TextView email;
+    TextView address;
+    TextView username;
+    // public String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+        contact=findViewById(R.id.contact);
+        email=(TextView) findViewById(R.id.email);
+        contact=findViewById(R.id.contact);
+        address=findViewById(R.id.address);
+        username=findViewById(R.id.username);
+
+        System.out.println(Find_Book.useremail);
+        email.setText(Find_Book.useremail);
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("email",Find_Book.useremail);
+        query.findInBackground(new FindCallback<ParseUser>() {
+            public void done(List<ParseUser> users, ParseException e) {
+                if (e == null) {
+                    // The query was successful, returns the users that matches
+                    // the criterias.
+                    for(ParseUser user : users) {
+                        username.setText(user.getUsername());
+                        contact.setText(user.getString("Contact"));
+                        address.setText(user.getString("Address"));
+
+                    }
+                } else {
+                    // Something went wrong.
+                }
+            }
+        });
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,7 +108,42 @@ public class UserActivity extends AppCompatActivity {
     }
 
     public void onClickSendRequest(View view) {
-        Intent homeIntent = new Intent(this, HomeActivity.class);
-        startActivityForResult(homeIntent, 1);
+        final ProgressDialog dlg = new ProgressDialog(UserActivity.this);
+        dlg.setTitle("Please, wait a moment.");
+        dlg.setMessage("Sending Request...");
+        dlg.show();
+        ParseObject request = new ParseObject("request");
+        request.put("senderemail",MainActivity.email);
+        request.put("recepientemial",Find_Book.useremail);
+        request.put("title",Find_Book.booktitle);
+        request.put("requesttype","sent");
+        request.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    // Success
+                    dlg.dismiss();
+                    alertDisplayer("Request sent successfully","");
+                } else {
+                    // Error
+                }
+            }
+        });
+    }
+    private void alertDisplayer(String title,String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        Intent intent = new Intent(UserActivity.this, HomeActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
+        AlertDialog ok = builder.create();
+        ok.show();
     }
 }
