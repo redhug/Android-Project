@@ -8,13 +8,40 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 
 public class Activity_Request extends AppCompatActivity {
+    TextView bookname;
+    TextView username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__request);
+        bookname=findViewById(R.id.booktitle);
+        username=findViewById(R.id.user);
+        ParseQuery<ParseObject> req=ParseQuery.getQuery("request");
+        req.whereEqualTo("senderemail", MainActivity.email);
+        req.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject user, ParseException e) {
+                if(e==null) {
+                    System.out.println(user.getString("title"));
+                    bookname.setText(user.getString("title"));
+                    username.setText(user.getString("recepientemial"));
+                }
+                else {
+                    //error
+                }
+            }
+        });
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
