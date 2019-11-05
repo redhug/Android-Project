@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/bookimage" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/contact"
         android:layout_width="88dp"
         android:layout_height="24dp"
         android:text="Book Name:"
@@ -31,7 +31,7 @@
         app:layout_constraintVertical_bias="0.49" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Book Author: "
@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.589" />
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/address"
         android:layout_width="83dp"
         android:layout_height="22dp"
         android:text="Book Title: "
@@ -115,7 +115,7 @@
         app:layout_constraintVertical_bias="0.768" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Book Info."
