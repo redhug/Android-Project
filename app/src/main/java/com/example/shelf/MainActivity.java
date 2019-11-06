@@ -1,6 +1,8 @@
 package com.example.shelf;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText emailID;
     private EditText password;
     public static String email;
+    private RecyclerView recyclerView;
 
 
     @Override
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         emailID =  findViewById(R.id.email);
         password = findViewById(R.id.password);
+
 
         final Button login_button = findViewById(R.id.login);
         login_button.setOnClickListener(new View.OnClickListener() {

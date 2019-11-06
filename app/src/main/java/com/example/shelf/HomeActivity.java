@@ -1,6 +1,8 @@
 package com.example.shelf;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +11,38 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HomeActivity extends AppCompatActivity {
 
+    private RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        recyclerView = findViewById(R.id.recyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+        List<ModelClass> modelClassList = new ArrayList<>();
+        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","2"));
+        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","3"));
+        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","4"));
+        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","5"));
+        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","6"));
+        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","7"));
+        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","8"));
+        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","9"));
+        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","10"));
+        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","11"));
+
+        Adapter adapter = new Adapter(modelClassList);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
