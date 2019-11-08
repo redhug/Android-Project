@@ -1,6 +1,7 @@
 package com.example.shelf;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +11,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,32 +24,46 @@ import java.util.List;
 public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    ConstraintLayout detailslayout;
+    TextView title;
+    ArrayList<String>details=new ArrayList<String>();
+    ArrayList<String>author=new ArrayList<String>();
+    ArrayList<String>edition=new ArrayList<String>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-
         recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-
-        List<ModelClass> modelClassList = new ArrayList<>();
-        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","2"));
-        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","3"));
-        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","4"));
-        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","5"));
-        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","6"));
-        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","7"));
-        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","8"));
-        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","9"));
-        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","10"));
-        modelClassList.add(new ModelClass(R.drawable.bookimage, "i hate love story", "Samanth","11"));
-
-        Adapter adapter = new Adapter(modelClassList);
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        final List<ModelClass> modelClassList = new ArrayList<>();
+        ParseQuery<ParseObject> books=ParseQuery.getQuery("Add_Book");
+        books.whereEqualTo("useremail",MainActivity.email);
+        books.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> userbooks, ParseException e) {
+                if(e==null)
+                {
+                    for(ParseObject book:userbooks)
+                    {
+                        details.add(book.getString("title"));
+                        author.add(book.getString("author"));
+                        edition.add(book.getString("edition"));
+                    }
+                }
+                System.out.println(details);
+                for(int i=0;i<details.size();i++)
+                {
+                    modelClassList.add(new ModelClass((R.drawable.bookimage),details.get(i), author.get(i),edition.get(i)));
+                }
+                Adapter adapter = new Adapter(modelClassList);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,7 +95,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onClickBook(View v){
+        title=findViewById(R.id.title);
         Intent bookInfo = new Intent(this, Book_Info_Activity.class);
+        bookInfo.putExtra("bookname",title.getText().toString());
         startActivityForResult(bookInfo, 1);
     }
     public void onActivityResult(int requestCode,int resultCode,Intent tipInt) {
