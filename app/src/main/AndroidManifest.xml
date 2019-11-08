@@ -22,6 +22,7 @@
         <activity android:name=".Add_Book" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".UserActivity" />
+        <activity android:name=".resetpassword"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

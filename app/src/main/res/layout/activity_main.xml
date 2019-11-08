@@ -12,7 +12,6 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="loginClick"
         android:text="Login"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,7 +25,6 @@
         android:id="@+id/Signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onSignup"
         android:text="Signup"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +52,7 @@
         app:layout_constraintVertical_bias="0.064" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/resetemail"
         android:layout_width="276dp"
         android:layout_height="55dp"
         android:ems="10"
@@ -68,7 +66,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.185" />
 
-     <EditText
+    <EditText
         android:id="@+id/password"
         android:layout_width="276dp"
         android:layout_height="56dp"

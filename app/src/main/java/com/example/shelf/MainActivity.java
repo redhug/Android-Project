@@ -1,8 +1,6 @@
 package com.example.shelf;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -23,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText emailID;
     private EditText password;
     public static String email;
-    private RecyclerView recyclerView;
 
 
     @Override
@@ -31,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        emailID =  findViewById(R.id.email);
+        emailID =  findViewById(R.id.resetemail);
         password = findViewById(R.id.password);
 
 
@@ -93,6 +90,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        final Button reset = findViewById(R.id.forgotPassword);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,resetpassword.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
     }
 
     private boolean isEmpty(EditText text) {
@@ -121,4 +127,6 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog ok = builder.create();
         ok.show();
     }
+
+
 }
