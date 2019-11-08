@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -59,6 +60,8 @@ public class ProfileActivity extends AppCompatActivity {
         startActivityForResult(tip_intent, 1);
     }
     public void onLogout(View v){
+        ParseUser.logOut();
+        Toast.makeText(ProfileActivity.this,"Logging out", Toast.LENGTH_LONG).show();
         Intent tip_intent = new Intent(this, MainActivity.class);
         startActivityForResult(tip_intent, 1);
     }

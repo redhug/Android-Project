@@ -41,7 +41,7 @@ public class resetpassword extends AppCompatActivity {
     }
 
     public void resetpass(View view) {
-        ParseUser.requestPasswordResetInBackground("anveshrao1616@gmail.com",
+        ParseUser.requestPasswordResetInBackground(email.getText().toString(),
                 new RequestPasswordResetCallback() {
                     public void done(ParseException e) {
                         if (e == null) {
