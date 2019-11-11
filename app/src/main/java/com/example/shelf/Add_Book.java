@@ -141,7 +141,7 @@ public class Add_Book extends AppCompatActivity {
                         dlg.dismiss();
                         alertDisplayer("Book added successfully","");
                     } else {
-                        // Error
+                        Log.d("Exception occured","e");
                     }
                 }
             });

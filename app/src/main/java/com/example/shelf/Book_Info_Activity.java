@@ -57,6 +57,7 @@ public class Book_Info_Activity extends AppCompatActivity {
             }
         }
         catch (Exception e){
+            Log.d("Exception occured","e");
         }
     }
 

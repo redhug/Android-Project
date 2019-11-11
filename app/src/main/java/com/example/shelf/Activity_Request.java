@@ -37,7 +37,7 @@ public class Activity_Request extends AppCompatActivity {
                     username.setText(user.getString("recepientemial"));
                 }
                 else {
-                    //error
+                    Log.d("Exception occured","e");
                 }
             }
         });

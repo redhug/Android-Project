@@ -29,6 +29,7 @@ public class UserActivity extends AppCompatActivity {
     TextView email;
     TextView address;
     TextView username;
+    public static String bookuseraddress;
     // public String user;
 
     @Override
@@ -48,16 +49,15 @@ public class UserActivity extends AppCompatActivity {
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> users, ParseException e) {
                 if (e == null) {
-                    // The query was successful, returns the users that matches
-                    // the criterias.
                     for(ParseUser user : users) {
                         username.setText(user.getUsername());
                         contact.setText(user.getString("Contact"));
                         address.setText(user.getString("Address"));
+                       bookuseraddress=user.getString("Address");
 
                     }
                 } else {
-                    // Something went wrong.
+                   Log.d("Exception occured","e");
                 }
             }
         });
@@ -125,7 +125,7 @@ public class UserActivity extends AppCompatActivity {
                     dlg.dismiss();
                     alertDisplayer("Request sent successfully","");
                 } else {
-                    // Error
+                    Log.d("Exception occured","e");
                 }
             }
         });
@@ -145,5 +145,10 @@ public class UserActivity extends AppCompatActivity {
                 });
         AlertDialog ok = builder.create();
         ok.show();
+    }
+
+    public void maps(View view) {
+        Intent intent=new Intent(this,MapsActivity.class);
+        startActivity(intent);
     }
 }

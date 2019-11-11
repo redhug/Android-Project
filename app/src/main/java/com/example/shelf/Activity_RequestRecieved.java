@@ -43,7 +43,7 @@ public class Activity_RequestRecieved extends AppCompatActivity {
                     username.setText(user.getString("senderemail"));
                 }
                 else {
-                    //error
+                    Log.d("Exception occured","e");
                 }
             }
         });
@@ -80,12 +80,6 @@ public class Activity_RequestRecieved extends AppCompatActivity {
         }
         return(super.onOptionsItemSelected(item));
     }
-    public void onClickHome(View view) {
-        Intent tip_intent = new Intent(this, MainActivity.class);
-        startActivityForResult(tip_intent, 1);
-    }
-
-
     public void onActivityResult(int requestCode,int resultCode,Intent tipInt) {
         try {
             if (requestCode == 1) {

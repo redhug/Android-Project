@@ -50,15 +50,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void onClickFindBook(View v){
-        Intent tip_intent = new Intent(this, Find_Book.class);
-        startActivityForResult(tip_intent, 1);
-    }
-    public void onClickAdd_Book(View v){
-        Intent tip_intent = new Intent(this, Add_Book.class);
-        startActivityForResult(tip_intent, 1);
-    }
     public void onLogout(View v){
         ParseUser.logOut();
         Toast.makeText(ProfileActivity.this,"Logging out", Toast.LENGTH_LONG).show();
@@ -75,14 +66,5 @@ public class ProfileActivity extends AppCompatActivity {
         }
         catch (Exception e){
         }
-    }
-    public void onClickHome(View v){
-        Intent tip_intent = new Intent(this, HomeActivity.class);
-        startActivityForResult(tip_intent, 1);
-    }
-
-    public void onClickRequest_Book(View view) {
-        Intent tip_intent = new Intent(this, Activity_Request.class);
-        startActivityForResult(tip_intent, 1);
     }
 }
