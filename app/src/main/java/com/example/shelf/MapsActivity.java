@@ -7,6 +7,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,6 +19,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -48,12 +50,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     public LatLng getLocationFromAddress(Context context, String strAddress) {
 
-        Geocoder coder = new Geocoder(context);
+        Geocoder coder = new Geocoder(context, Locale.getDefault());
         List<Address> address;
         LatLng geo = null;
 
         try {
-            address = coder.getFromLocationName(strAddress, 5);
+            address = coder.getFromLocationName(strAddress, 10);
             if (address == null) {
                 return null;
             }
@@ -62,8 +64,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             geo = new LatLng(location.getLatitude(), location.getLongitude() );
 
         } catch (IOException ex) {
+            Toast.makeText(this,"Address not found on Maps", Toast.LENGTH_LONG).show();
             Log.d("Address Not found",ex.toString());
             ex.printStackTrace();
+
         }
 
         return geo;
