@@ -1,10 +1,12 @@
 package com.example.shelf;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +18,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
     private List<ModelClass> modelClassList;
 
     public Adapter(List<ModelClass> modelClassList){
-
         this.modelClassList = modelClassList;
     }
 
@@ -35,6 +36,21 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
         viewholder.title.setText(modelClassList.get(position).getTitle());
         viewholder.body.setText(modelClassList.get(position).getBody());
         viewholder.body2.setText(modelClassList.get(position).getBody2());
+        final String body2=modelClassList.get(position).getBody2();
+        final String body=modelClassList.get(position).getBody();
+        final String title=modelClassList.get(position).getTitle();
+        final int imageView=modelClassList.get(position).getImageResource();
+        viewholder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(view.getContext(), BookDetails.class);
+                in.putExtra("imageView", imageView);
+                in.putExtra("title",title);
+                in.putExtra("body", body);
+                in.putExtra("body2", body2);
+                view.getContext().startActivity(in);
+            }
+        });
     }
 
     @Override
@@ -57,6 +73,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
             title = itemView.findViewById(R.id.title);
             body = itemView.findViewById(R.id.body);
             body2 = itemView.findViewById(R.id.body1);
+
         }
 
         private void setData(int resource, String titleText, String bodyText, String bodyText1){

@@ -46,6 +46,7 @@
         <activity android:name=".Add_Book" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".UserActivity" />
+        <activity android:name=".BookDetails" />
         <activity android:name=".resetpassword" />
         <activity android:name=".MainActivity">
             <intent-filter>

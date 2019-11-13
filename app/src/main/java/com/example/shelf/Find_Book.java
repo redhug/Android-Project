@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -28,28 +30,30 @@ public class Find_Book extends AppCompatActivity {
     TextView titlename;
     TextView authorname;
     TextView editionnumber;
+    ArrayList<String> booktitle=new ArrayList<String>();
+    ArrayList<String> author=new ArrayList<String>();
+    ArrayList<String> edition=new ArrayList<String>();
     public static String useremail;
-    public static String booktitle;
+    public static String btitle;
+   List<Modelclass_findbook> modelClassList_findbook = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find__book);
-
         recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
 
-        List<Modelclass_findbook> modelClassList_findbook = new ArrayList<>();
-        modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","2"));
+       /* modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","2"));
         modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","3"));
         modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","4"));
         modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","5"));
         modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","6"));
         modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","7"));
-
+*/
 
 
         Adaptor_findbook Adaptor_findbook = new Adaptor_findbook(modelClassList_findbook);
@@ -97,25 +101,63 @@ public class Find_Book extends AppCompatActivity {
         editionnumber=findViewById(R.id.edition);
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Add_Book");
         query.whereEqualTo("title", title.getText().toString().toUpperCase());
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> books, ParseException e) {
+                if(e==null)
+                {
+                    for(ParseObject book:books )
+                    {
+                        System.out.println(book);
+                       booktitle.add(book.getString("title"));
+                        //author.add();
+                        //edition.add();
+                    }
+                }
+                else
+                {
+                    Log.d("No Books",e.toString());
+
+                }
+                System.out.println(booktitle);
+                for(int i=0;i<booktitle.size();i++)
+                {
+                    modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, booktitle.get(i), "hi","hi"));
+                }
+
+            }
+        });
+       // this.createdata(booktitle,author,edition);
+        /*query.getFirstInBackground(new GetCallback<ParseObject>() {
             public void done(ParseObject book, ParseException e) {
                 if (e == null) {
-                    String title = book.getString("title");
+                    *//*String title = book.getString("title");
                     String author =  book.getString("author");
                     String edition= book.getString("edition");
                     titlename.setText(title);
-                    booktitle=title;
+                   booktitle=title;
                     authorname.setText(author);
                     editionnumber.setText(edition);
-                    useremail=book.getString("useremail");
+                    useremail=book.getString("useremail");*//*
 
                 } else {
                     // Something is wrong
                 }
             }
-        });
+        });*/
 
     }
+
+ /*   private void createdata(ArrayList<String> booktitle, ArrayList<String> author, ArrayList<String> edition) {
+
+        System.out.println(booktitle);
+        Toast.makeText(this,"No books found",Toast.LENGTH_LONG).show();
+        for (int i=0;i<booktitle.size();i++)
+        {
+            modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, booktitle.get(i), author.get(i),edition.get(i)));
+        }
+
+    }*/
 
     public void onActivityResult(int requestCode,int resultCode,Intent tipInt) {
         try {

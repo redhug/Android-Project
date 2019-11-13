@@ -115,7 +115,7 @@ public class UserActivity extends AppCompatActivity {
         ParseObject request = new ParseObject("request");
         request.put("senderemail",MainActivity.email);
         request.put("recepientemial",Find_Book.useremail);
-        request.put("title",Find_Book.booktitle);
+        request.put("title",Find_Book.btitle);
         request.put("requesttype","sent");
         request.saveInBackground(new SaveCallback() {
             @Override
