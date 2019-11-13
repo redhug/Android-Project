@@ -16,6 +16,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
     private List<ModelClass> modelClassList;
 
     public Adapter(List<ModelClass> modelClassList){
+
         this.modelClassList = modelClassList;
     }
 
@@ -30,11 +31,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder viewholder, int position) {
-        int resource = modelClassList.get(position).getImageResource();
-        String title = modelClassList.get(position).getTitle();
-        String body = modelClassList.get(position).getBody();
-        String body2 = modelClassList.get(position).getBody2();
-        viewholder.setData(resource, title, body, body2);
+        viewholder.imageView.setImageResource(modelClassList.get(position).getImageResource());
+        viewholder.title.setText(modelClassList.get(position).getTitle());
+        viewholder.body.setText(modelClassList.get(position).getBody());
+        viewholder.body2.setText(modelClassList.get(position).getBody2());
     }
 
     @Override

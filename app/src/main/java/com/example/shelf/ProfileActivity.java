@@ -80,7 +80,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
         return(super.onOptionsItemSelected(item));
     }
-    
+
     public void onLogout(View v){
         ParseUser.logOut();
         Toast.makeText(ProfileActivity.this,"Logging out", Toast.LENGTH_LONG).show();

@@ -1,6 +1,8 @@
 package com.example.shelf;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +18,12 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Find_Book extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
     EditText title;
     TextView titlename;
     TextView authorname;
@@ -28,6 +35,27 @@ public class Find_Book extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find__book);
+
+        recyclerView = findViewById(R.id.recyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        List<Modelclass_findbook> modelClassList_findbook = new ArrayList<>();
+        modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","2"));
+        modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","3"));
+        modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","4"));
+        modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","5"));
+        modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","6"));
+        modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","7"));
+
+
+
+        Adaptor_findbook Adaptor_findbook = new Adaptor_findbook(modelClassList_findbook);
+        recyclerView.setAdapter(Adaptor_findbook);
+        Adaptor_findbook.notifyDataSetChanged();
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

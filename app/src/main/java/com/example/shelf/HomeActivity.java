@@ -35,10 +35,12 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
+
         final List<ModelClass> modelClassList = new ArrayList<>();
         ParseQuery<ParseObject> books=ParseQuery.getQuery("Add_Book");
         books.whereEqualTo("useremail",MainActivity.email);
