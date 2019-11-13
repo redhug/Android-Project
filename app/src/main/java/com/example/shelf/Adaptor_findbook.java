@@ -53,7 +53,7 @@ public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.View
             super(itemView);
 
             imageView = itemView.findViewById(R.id.imageView);
-            title = itemView.findViewById(R.id.title);
+            title = itemView.findViewById(R.id.titleTV);
             author = itemView.findViewById(R.id.author);
             edition = itemView.findViewById(R.id.edition);
         }

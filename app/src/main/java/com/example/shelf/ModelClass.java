@@ -4,14 +4,14 @@ public class ModelClass {
 
     private int imageResource;
     private String title;
-    private String body;
-    private String body2;
+    private String author;
+    private String edition;
 
-    public ModelClass(int imageResource, String title, String body, String body2) {
+    public ModelClass(int imageResource, String title, String author, String edition) {
         this.imageResource = imageResource;
         this.title = title;
-        this.body = body;
-        this.body2 = body2;
+        this.author = author;
+        this.edition = edition;
     }
 
     public int getImageResource() {
@@ -22,11 +22,11 @@ public class ModelClass {
         return title;
     }
 
-    public String getBody() {
-        return body;
+    public String getAuthor() {
+        return author;
     }
 
-    public String getBody2() {
-        return body2;
+    public String getEdition() {
+        return edition;
     }
 }

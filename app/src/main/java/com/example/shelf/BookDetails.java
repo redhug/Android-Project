@@ -1,48 +1,36 @@
 package com.example.shelf;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.SaveCallback;
-
-import java.util.regex.Pattern;
 
 public class BookDetails extends AppCompatActivity {
 
-    TextView title,body,body2;
+    TextView titleTV,authorTV,editionTV;
     ImageView bookImage;
-    String Title,Body,Body2;
+    String Title,Author,Edition;
     int ImageResourse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_details);
         Title = getIntent().getStringExtra("title");
-        Body = getIntent().getStringExtra("body");
-        Body2 = getIntent().getStringExtra("body");
+        Author = getIntent().getStringExtra("body");
+        Edition = getIntent().getStringExtra("body");
         ImageResourse = getIntent().getIntExtra("imageView",1);
-        title = findViewById(R.id.title);
-        body = findViewById(R.id.body);
-        body2 = findViewById(R.id.body2);
+        titleTV = findViewById(R.id.titleTV);
+        authorTV = findViewById(R.id.authorTV);
+        editionTV = findViewById(R.id.editionTV);
         bookImage=findViewById(R.id.imageView);
-        title.setText(Title);
-        body.setText(Body);
-        body2.setText(Body2);
+        titleTV.setText(Title);
+        authorTV.setText(Author);
+        editionTV.setText(Edition);
         bookImage.setImageResource(ImageResourse);
     }
     @Override

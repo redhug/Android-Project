@@ -12,14 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +31,7 @@ public class Find_Book extends AppCompatActivity {
     ArrayList<String> edition=new ArrayList<String>();
     public static String useremail;
     public static String btitle;
-   List<Modelclass_findbook> modelClassList_findbook = new ArrayList<>();
+    List<Modelclass_findbook> modelClassList_findbook = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +41,6 @@ public class Find_Book extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-
-
-       /* modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","2"));
-        modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","3"));
-        modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","4"));
-        modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","5"));
-        modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","6"));
-        modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, "i hate love story", "Samanth","7"));
-*/
-
-
-        Adaptor_findbook Adaptor_findbook = new Adaptor_findbook(modelClassList_findbook);
-        recyclerView.setAdapter(Adaptor_findbook);
-        Adaptor_findbook.notifyDataSetChanged();
 
     }
     @Override
@@ -95,8 +77,10 @@ public class Find_Book extends AppCompatActivity {
         startActivityForResult(ownerIntent, 1);
     }
     public void search(View view) {
+        booktitle.clear();
+        modelClassList_findbook.clear();
         title=findViewById(R.id.search);
-        titlename=findViewById(R.id.title);
+        titlename=findViewById(R.id.titleTV);
         authorname=findViewById(R.id.author);
         editionnumber=findViewById(R.id.edition);
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Add_Book");
@@ -109,9 +93,9 @@ public class Find_Book extends AppCompatActivity {
                     for(ParseObject book:books )
                     {
                         System.out.println(book);
-                       booktitle.add(book.getString("title"));
-                        //author.add();
-                        //edition.add();
+                        booktitle.add(book.getString("title"));
+                        author.add(book.getString("author"));
+                        edition.add(book.getString("edition"));
                     }
                 }
                 else
@@ -120,44 +104,10 @@ public class Find_Book extends AppCompatActivity {
 
                 }
                 System.out.println(booktitle);
-                for(int i=0;i<booktitle.size();i++)
-                {
-                    modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, booktitle.get(i), "hi","hi"));
-                }
-
+                find();
             }
         });
-       // this.createdata(booktitle,author,edition);
-        /*query.getFirstInBackground(new GetCallback<ParseObject>() {
-            public void done(ParseObject book, ParseException e) {
-                if (e == null) {
-                    *//*String title = book.getString("title");
-                    String author =  book.getString("author");
-                    String edition= book.getString("edition");
-                    titlename.setText(title);
-                   booktitle=title;
-                    authorname.setText(author);
-                    editionnumber.setText(edition);
-                    useremail=book.getString("useremail");*//*
-
-                } else {
-                    // Something is wrong
-                }
-            }
-        });*/
-
     }
-
- /*   private void createdata(ArrayList<String> booktitle, ArrayList<String> author, ArrayList<String> edition) {
-
-        System.out.println(booktitle);
-        Toast.makeText(this,"No books found",Toast.LENGTH_LONG).show();
-        for (int i=0;i<booktitle.size();i++)
-        {
-            modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, booktitle.get(i), author.get(i),edition.get(i)));
-        }
-
-    }*/
 
     public void onActivityResult(int requestCode,int resultCode,Intent tipInt) {
         try {
@@ -171,5 +121,13 @@ public class Find_Book extends AppCompatActivity {
 
         }
     }
-
+    public void find(){
+        for(int i=0;i<booktitle.size();i++)
+        {
+            modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, booktitle.get(i), author.get(i),edition.get(i)));
+        }
+        Adaptor_findbook Adaptor_findbook = new Adaptor_findbook(modelClassList_findbook);
+        recyclerView.setAdapter(Adaptor_findbook);
+        Adaptor_findbook.notifyDataSetChanged();
+    }
 }

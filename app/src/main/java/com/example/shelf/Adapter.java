@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,10 +33,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
     public void onBindViewHolder(@NonNull Viewholder viewholder, int position) {
         viewholder.imageView.setImageResource(modelClassList.get(position).getImageResource());
         viewholder.title.setText(modelClassList.get(position).getTitle());
-        viewholder.body.setText(modelClassList.get(position).getBody());
-        viewholder.body2.setText(modelClassList.get(position).getBody2());
-        final String body2=modelClassList.get(position).getBody2();
-        final String body=modelClassList.get(position).getBody();
+        viewholder.author.setText(modelClassList.get(position).getAuthor());
+        viewholder.edition.setText(modelClassList.get(position).getEdition());
+        final String edition=modelClassList.get(position).getEdition();
+        final String author=modelClassList.get(position).getAuthor();
         final String title=modelClassList.get(position).getTitle();
         final int imageView=modelClassList.get(position).getImageResource();
         viewholder.imageView.setOnClickListener(new View.OnClickListener() {
@@ -46,8 +45,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
                 Intent in = new Intent(view.getContext(), BookDetails.class);
                 in.putExtra("imageView", imageView);
                 in.putExtra("title",title);
-                in.putExtra("body", body);
-                in.putExtra("body2", body2);
+                in.putExtra("body", author);
+                in.putExtra("body2", edition);
                 view.getContext().startActivity(in);
             }
         });
@@ -63,24 +62,24 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
 
         private ImageView imageView;
         private TextView title;
-        private TextView body;
-        private TextView body2;
+        private TextView author;
+        private TextView edition;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.imageView);
-            title = itemView.findViewById(R.id.title);
-            body = itemView.findViewById(R.id.body);
-            body2 = itemView.findViewById(R.id.body1);
+            title = itemView.findViewById(R.id.titleTV);
+            author = itemView.findViewById(R.id.authorTV);
+            edition = itemView.findViewById(R.id.editionTV);
 
         }
 
-        private void setData(int resource, String titleText, String bodyText, String bodyText1){
+        private void setData(int resource, String titleText, String authorText, String editionText){
             imageView.setImageResource(resource);
             title.setText(titleText);
-            body.setText(bodyText);
-            body2.setText(bodyText1);
+            author.setText(authorText);
+            edition.setText(editionText);
         }
     }
 

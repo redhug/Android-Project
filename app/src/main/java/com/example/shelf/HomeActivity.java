@@ -35,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        title=findViewById(R.id.title);
+        title=findViewById(R.id.titleTV);
 
         recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -98,7 +98,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onClickBook(View v){
-        title=findViewById(R.id.title);
+        title=findViewById(R.id.titleTV);
         Intent bookInfo = new Intent(this, Book_Info_Activity.class);
         bookInfo.putExtra("bookname",title.getText().toString());
         startActivityForResult(bookInfo, 1);
