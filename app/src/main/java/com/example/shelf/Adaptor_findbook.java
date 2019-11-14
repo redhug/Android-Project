@@ -1,5 +1,6 @@
 package com.example.shelf;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,17 @@ public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.View
         viewholder.author.setText(modelClassList_findbook.get(position).getAuthor());
         viewholder.edition.setText(modelClassList_findbook.get(position).getEdition());
         viewholder.useremail.setText(modelClassList_findbook.get(position).getUseremail());
+        final String useremail=modelClassList_findbook.get(position).getUseremail();
+        final String title=modelClassList_findbook.get(position).getTitle();
+        viewholder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), UserActivity.class);
+                intent.putExtra("email", useremail);
+                intent.putExtra("title", title);
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -71,4 +83,3 @@ public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.View
     }
 
 }
-
