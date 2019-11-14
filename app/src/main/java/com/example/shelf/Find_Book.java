@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -122,6 +124,11 @@ public class Find_Book extends AppCompatActivity {
         }
     }
     public void find(){
+
+        if(booktitle.isEmpty())
+        {
+            Toast.makeText(this,"No books found",Toast.LENGTH_LONG).show();
+        }
         for(int i=0;i<booktitle.size();i++)
         {
             modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, booktitle.get(i), author.get(i),edition.get(i)));
