@@ -21,8 +21,8 @@ public class BookDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_details);
         Title = getIntent().getStringExtra("title");
-        Author = getIntent().getStringExtra("body");
-        Edition = getIntent().getStringExtra("body");
+        Author = getIntent().getStringExtra("author");
+        Edition = getIntent().getStringExtra("edition");
         ImageResourse = getIntent().getIntExtra("imageView",1);
         titleTV = findViewById(R.id.titleTV);
         authorTV = findViewById(R.id.authorTV);

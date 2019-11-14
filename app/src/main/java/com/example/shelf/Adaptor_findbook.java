@@ -34,6 +34,7 @@ public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.View
         viewholder.title.setText(modelClassList_findbook.get(position).getTitle());
         viewholder.author.setText(modelClassList_findbook.get(position).getAuthor());
         viewholder.edition.setText(modelClassList_findbook.get(position).getEdition());
+        viewholder.useremail.setText(modelClassList_findbook.get(position).getUseremail());
     }
 
     @Override
@@ -48,6 +49,7 @@ public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.View
         private TextView title;
         private TextView author;
         private TextView edition;
+        private TextView useremail;
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
@@ -56,13 +58,15 @@ public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.View
             title = itemView.findViewById(R.id.titleTV);
             author = itemView.findViewById(R.id.author);
             edition = itemView.findViewById(R.id.edition);
+            useremail = itemView.findViewById(R.id.useremail);
         }
 
-        private void setData(int resource, String titleText, String authorText, String editionText){
+        private void setData(int resource, String titleText, String authorText, String editionText,String useremailText){
             imageView.setImageResource(resource);
             title.setText(titleText);
             author.setText(authorText);
             edition.setText(editionText);
+            useremail.setText(useremailText);
         }
     }
 

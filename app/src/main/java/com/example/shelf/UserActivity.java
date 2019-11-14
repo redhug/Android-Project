@@ -42,10 +42,10 @@ public class UserActivity extends AppCompatActivity {
         address=findViewById(R.id.address);
         username=findViewById(R.id.username);
 
-        System.out.println(Find_Book.useremail);
-        email.setText(Find_Book.useremail);
+       // System.out.println(Find_Book.useremail);
+      //  email.setText(Find_Book.useremail);
         ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("email",Find_Book.useremail);
+      //  query.whereEqualTo("email",Find_Book.useremail);
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> users, ParseException e) {
                 if (e == null) {
@@ -114,8 +114,8 @@ public class UserActivity extends AppCompatActivity {
         dlg.show();
         ParseObject request = new ParseObject("request");
         request.put("senderemail",MainActivity.email);
-        request.put("recepientemial",Find_Book.useremail);
-        request.put("title",Find_Book.btitle);
+       // request.put("recepientemial",Find_Book.useremail);
+        //request.put("title",Find_Book.btitle);
         request.put("requesttype","sent");
         request.saveInBackground(new SaveCallback() {
             @Override

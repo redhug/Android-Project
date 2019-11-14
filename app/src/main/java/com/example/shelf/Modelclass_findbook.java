@@ -7,12 +7,15 @@ public class Modelclass_findbook {
         private String title;
         private String author;
         private String edition;
+        private String useremail;
 
-        public Modelclass_findbook(int imageResource, String title, String author, String edition) {
+
+        public Modelclass_findbook(int imageResource, String title, String author, String edition,String useremail) {
             this.imageResource = imageResource;
             this.title = title;
             this.author = author;
             this.edition = edition;
+            this.useremail=useremail;
         }
 
         public int getImageResource() {
@@ -30,6 +33,11 @@ public class Modelclass_findbook {
         public String getEdition() {
             return edition;
         }
+
+        public String getUseremail() {
+        return useremail;
+    }
+
     }
 
 

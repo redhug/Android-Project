@@ -45,8 +45,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
                 Intent in = new Intent(view.getContext(), BookDetails.class);
                 in.putExtra("imageView", imageView);
                 in.putExtra("title",title);
-                in.putExtra("body", author);
-                in.putExtra("body2", edition);
+                in.putExtra("author", author);
+                in.putExtra("edition", edition);
                 view.getContext().startActivity(in);
             }
         });

@@ -28,11 +28,11 @@ public class Find_Book extends AppCompatActivity {
     TextView titlename;
     TextView authorname;
     TextView editionnumber;
+    TextView email;
     ArrayList<String> booktitle=new ArrayList<String>();
     ArrayList<String> author=new ArrayList<String>();
     ArrayList<String> edition=new ArrayList<String>();
-    public static String useremail;
-    public static String btitle;
+    ArrayList<String> useremail=new ArrayList<String>();
     List<Modelclass_findbook> modelClassList_findbook = new ArrayList<>();
 
     @Override
@@ -80,11 +80,15 @@ public class Find_Book extends AppCompatActivity {
     }
     public void search(View view) {
         booktitle.clear();
+        author.clear();
+        edition.clear();
+        useremail.clear();
         modelClassList_findbook.clear();
         title=findViewById(R.id.search);
         titlename=findViewById(R.id.titleTV);
         authorname=findViewById(R.id.author);
         editionnumber=findViewById(R.id.edition);
+        email=findViewById(R.id.useremail);
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Add_Book");
         query.whereEqualTo("title", title.getText().toString().toUpperCase());
         query.findInBackground(new FindCallback<ParseObject>() {
@@ -98,6 +102,7 @@ public class Find_Book extends AppCompatActivity {
                         booktitle.add(book.getString("title"));
                         author.add(book.getString("author"));
                         edition.add(book.getString("edition"));
+                        useremail.add(book.getString("useremail"));
                     }
                 }
                 else
@@ -131,7 +136,7 @@ public class Find_Book extends AppCompatActivity {
         }
         for(int i=0;i<booktitle.size();i++)
         {
-            modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, booktitle.get(i), author.get(i),edition.get(i)));
+            modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, booktitle.get(i), author.get(i),edition.get(i),useremail.get(i)));
         }
         Adaptor_findbook Adaptor_findbook = new Adaptor_findbook(modelClassList_findbook);
         recyclerView.setAdapter(Adaptor_findbook);
