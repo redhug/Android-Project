@@ -30,7 +30,8 @@ public class UserActivity extends AppCompatActivity {
     TextView address;
     TextView username;
     public static String bookuseraddress;
-    // public String user;
+    public String useremail;
+    public String btitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +42,12 @@ public class UserActivity extends AppCompatActivity {
         contact=findViewById(R.id.contact);
         address=findViewById(R.id.address);
         username=findViewById(R.id.username);
-
-       // System.out.println(Find_Book.useremail);
-      //  email.setText(Find_Book.useremail);
+        Intent intent=getIntent();
+        useremail=intent.getStringExtra("email");
+        btitle=intent.getStringExtra("title");
+        email.setText(useremail);
         ParseQuery<ParseUser> query = ParseUser.getQuery();
-      //  query.whereEqualTo("email",Find_Book.useremail);
+        query.whereEqualTo("email",useremail);
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(List<ParseUser> users, ParseException e) {
                 if (e == null) {
@@ -53,11 +55,11 @@ public class UserActivity extends AppCompatActivity {
                         username.setText(user.getUsername());
                         contact.setText(user.getString("Contact"));
                         address.setText(user.getString("Address"));
-                       bookuseraddress=user.getString("Address");
+                        bookuseraddress=user.getString("Address");
 
                     }
                 } else {
-                   Log.d("Exception occured","e");
+                    Log.d("Exception occured","e");
                 }
             }
         });
@@ -114,8 +116,8 @@ public class UserActivity extends AppCompatActivity {
         dlg.show();
         ParseObject request = new ParseObject("request");
         request.put("senderemail",MainActivity.email);
-       // request.put("recepientemial",Find_Book.useremail);
-        //request.put("title",Find_Book.btitle);
+        request.put("recepientemial",useremail);
+        request.put("title",btitle);
         request.put("requesttype","sent");
         request.saveInBackground(new SaveCallback() {
             @Override
