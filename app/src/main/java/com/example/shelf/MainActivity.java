@@ -15,12 +15,15 @@ import android.widget.Toast;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText emailID;
     private EditText password;
     public static String email;
+    private RecyclerView recyclerView;
 
 
     @Override

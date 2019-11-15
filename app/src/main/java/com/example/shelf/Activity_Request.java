@@ -1,6 +1,8 @@
 package com.example.shelf;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,39 +10,42 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
-import com.parse.GetCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Activity_Request extends AppCompatActivity {
-    TextView bookname;
-    TextView username;
 
+    private RecyclerView recyclerView;
+    private BookAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__request);
-        bookname=findViewById(R.id.booktitle);
-        username=findViewById(R.id.user);
-        ParseQuery<ParseObject> req=ParseQuery.getQuery("request");
-        req.whereEqualTo("senderemail", MainActivity.email);
-        req.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject user, ParseException e) {
-                if(e==null) {
-                    System.out.println(user.getString("title"));
-                    bookname.setText(user.getString("title"));
-                    username.setText(user.getString("recepientemial"));
-                }
-                else {
-                    Log.d("Exception occured","e");
-                }
-            }
-        });
+
+        recyclerView = findViewById(R.id.recycler_view1);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        List<Model>mymodel = new ArrayList<>();
+        mymodel.add(new Model("sushma", "java"));
+        mymodel.add(new Model(" sushma", "java2"));
+        mymodel.add(new Model( "sushma", "Adb"));
+        mymodel.add(new Model(" sushma", "ADB2"));
+        mymodel.add(new Model( "sushma", "web Apps"));
+        mymodel.add(new Model(" sushma", "uxd"));
+        mymodel.add(new Model( "sushma", "ML"));
+        mymodel.add(new Model(" sushma", "Bigdata"));
+        mymodel.add(new Model( "sushma", "English"));
+        mymodel.add(new Model(" sushma", "Android"));
+
+        adapter = new BookAdapter(mymodel);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
 
     }
     @Override
