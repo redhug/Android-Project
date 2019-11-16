@@ -29,25 +29,23 @@ public class Activity_RequestRecieved extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__request_recieved);
-        bookname=findViewById(R.id.booktitle);
-        username=findViewById(R.id.user);
-        accept=findViewById(R.id.accept);
-        ParseQuery<ParseObject> req=ParseQuery.getQuery("request");
-        req.whereEqualTo("recepientemial", MainActivity.email);
-        req.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject user, ParseException e) {
-                if(e==null) {
-                    System.out.println(user.getString("senderemail"));
-                    bookname.setText(user.getString("title"));
-                    username.setText(user.getString("senderemail"));
-                }
-                else {
-                    Log.d("Exception occured","e");
-                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
-        });
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+
 import com.parse.ParseException;
 import com.parse.SaveCallback;
 import com.parse.ParseObject;
@@ -26,6 +28,7 @@ public class Add_Book extends AppCompatActivity {
     EditText edition;
     EditText bookCondition;
     Button submit;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
