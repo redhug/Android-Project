@@ -26,8 +26,8 @@ The sequence of our application is as follows:
 * If a user is new to the application, one should register with the personal information and then login using email id and password.
 * After login, a user is navigated to the home page where he/she can view the list of books uploaded.
 * User can add the book by entering the information of book like book title, author of the book, Isbn number, edition, condition of the book and an image. After filling the book details, a submit button is pressed and the book is added sucessfully to the database. 
-* A user have an option to search the books from the database and if the user finds that book, he can send the request to the person who has uploaded that book.
-* A user can view all the book requests and also he/she can accept/reject the request. Once the request has been completed, it is notified through email.
+* A user have an option to search the books from the database and if the user finds that book, he/she can send the request to the person who has uploaded that book,if there are multiple book owners, user can make a choice to send the request to a particular book owner based on considering his location over the map.
+* A user can view all the book requests and also he/she can accept/reject the request. 
 
 ## Supported devices:
 
