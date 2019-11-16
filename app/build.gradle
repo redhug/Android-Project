@@ -46,6 +46,7 @@ dependencies {
     implementation 'com.android.support:design:28.2.0'
     implementation "com.github.parse-community.Parse-SDK-Android:parse:1.21.0"
 
+
 }
 repositories {
     mavenCentral()
