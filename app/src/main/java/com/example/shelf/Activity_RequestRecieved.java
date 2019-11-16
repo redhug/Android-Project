@@ -35,9 +35,9 @@ public class Activity_RequestRecieved extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__request_recieved);
         bookname=findViewById(R.id.booktitle);
-        username=findViewById(R.id.user);
-        accept=findViewById(R.id.accept);
-        ParseQuery<ParseObject> req=ParseQuery.getQuery("request");
+        //username=findViewById(R.id.user);
+        //accept=findViewById(R.id.accept);
+        /*ParseQuery<ParseObject> req=ParseQuery.getQuery("request");
         req.whereEqualTo("recepientemial", MainActivity.email);
         req.getFirstInBackground(new GetCallback<ParseObject>() {
             @Override
@@ -51,7 +51,7 @@ public class Activity_RequestRecieved extends AppCompatActivity {
                     Log.d("Exception occured","e");
                 }
             }
-        });
+        });*/
 
         recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
