@@ -66,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivityForResult(findBook, 1);
                 return(true);
             case R.id.requests:
-                Intent requests = new Intent(this, Activity_Request.class);
+                Intent requests = new Intent(this, Activity_RequestRecieved.class);
                 startActivityForResult(requests, 1);
                 return(true);
             case R.id.addBook:

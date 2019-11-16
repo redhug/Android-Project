@@ -39,7 +39,6 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".Activity_RequestRecieved" />
-        <activity android:name=".Activity_Request" />
         <activity android:name=".OwnerActivity" />
         <activity android:name=".Book_Info_Activity" />
         <activity android:name=".Find_Book" />

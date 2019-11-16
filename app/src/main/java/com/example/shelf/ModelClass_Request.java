@@ -7,11 +7,11 @@ public class ModelClass_Request {
     private String accept;
     private String reject;
 
-    public ModelClass_Request(String title, String useremail, String accept, String reject) {
+    public ModelClass_Request(String title, String useremail) {
         this.title = title;
         this.useremail = useremail;
-        this.accept = accept;
-        this.reject = reject;
+        //this.accept = accept;
+        //this.reject = reject;
     }
 
     public String getTitle() {
@@ -21,12 +21,11 @@ public class ModelClass_Request {
     public String getUseremail() {
         return useremail;
     }
-
-    public String getAccept() {
+    /* public String getAccept() {
         return accept;
     }
 
     public String getReject() {
         return reject;
-    }
+    }*/
 }

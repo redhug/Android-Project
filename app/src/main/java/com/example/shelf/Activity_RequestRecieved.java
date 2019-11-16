@@ -60,8 +60,8 @@ public class Activity_RequestRecieved extends AppCompatActivity {
 
 
         List<ModelClass_Request> modelClassList_Request = new ArrayList<>();
-        modelClassList_Request.add(new ModelClass_Request( "i hate love story", "Samanth","accept", "reject"));
-        modelClassList_Request.add(new ModelClass_Request( "i hate love story", "Samanth","accept", "reject"));
+        modelClassList_Request.add(new ModelClass_Request( "i hate love story", "Samanth"));
+        modelClassList_Request.add(new ModelClass_Request( "i hate love story", "Samanth"));
 
 
 
@@ -88,7 +88,7 @@ public class Activity_RequestRecieved extends AppCompatActivity {
                 startActivityForResult(findBook, 1);
                 return(true);
             case R.id.requests:
-                Intent requests = new Intent(this, Activity_Request.class);
+                Intent requests = new Intent(this, Activity_RequestRecieved.class);
                 startActivityForResult(requests, 1);
                 return(true);
             case R.id.addBook:
@@ -115,7 +115,7 @@ public class Activity_RequestRecieved extends AppCompatActivity {
     }
 
     public void onClickMy_Request(View view) {
-        Intent requests = new Intent(this, Activity_Request.class);
+        Intent requests = new Intent(this, Activity_RequestRecieved.class);
         startActivityForResult(requests, 1);
     }
 
