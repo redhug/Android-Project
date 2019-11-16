@@ -1,4 +1,4 @@
-![](Logo.png)
+![](Logo.PNG)
 
 # Shelf
 - This app allows the people to share or request physical books with others. Using our application a user can either share a book that he/she has or he/she can get a book that is available. There is also a feature to request for a book that you would love to read.
