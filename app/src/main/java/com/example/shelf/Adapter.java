@@ -1,6 +1,7 @@
 package com.example.shelf;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +73,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
             title = itemView.findViewById(R.id.titleTV);
             author = itemView.findViewById(R.id.authorTV);
             edition = itemView.findViewById(R.id.editionTV);
-
+            itemView.setBackgroundColor(Color.parseColor("#eff0f1"));
         }
 
         private void setData(int resource, String titleText, String authorText, String editionText){
