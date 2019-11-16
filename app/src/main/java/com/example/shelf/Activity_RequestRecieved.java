@@ -1,6 +1,8 @@
 package com.example.shelf;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,10 +20,13 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class Activity_RequestRecieved extends AppCompatActivity {
+
+    private RecyclerView recyclerView;
     TextView bookname;
     TextView username;
     Button accept;
@@ -46,6 +51,28 @@ public class Activity_RequestRecieved extends AppCompatActivity {
 
 
             }
+<<<<<<< HEAD
+=======
+        });
+
+        recyclerView = findViewById(R.id.recyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        List<ModelClass_Request> modelClassList_Request = new ArrayList<>();
+        modelClassList_Request.add(new ModelClass_Request( "i hate love story", "Samanth","accept", "reject"));
+        modelClassList_Request.add(new ModelClass_Request( "i hate love story", "Samanth","accept", "reject"));
+
+
+
+        Adapter_Request Adapter_Request = new Adapter_Request(modelClassList_Request);
+        recyclerView.setAdapter(Adapter_Request);
+        Adapter_Request.notifyDataSetChanged();
+
+    }
+>>>>>>> 5c339554245563c1131aea2d2737f109a45620ee
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
