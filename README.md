@@ -12,7 +12,7 @@
 
 ## Test credentials:
 
-* Credentials used for testing
+### Credentials used for testing
 - Email-ID: reddysushma651@gmail.com
 - Password: reddy4548
  
