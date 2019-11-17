@@ -61,6 +61,10 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
+            case R.id.home:
+                Intent home = new Intent(this, HomeActivity.class);
+                startActivityForResult(home, 1);
+                return(true);
             case R.id.findBook:
                 Intent findBook = new Intent(this, Find_Book.class);
                 startActivityForResult(findBook, 1);
