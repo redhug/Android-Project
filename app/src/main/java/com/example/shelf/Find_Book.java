@@ -1,5 +1,6 @@
 package com.example.shelf;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -98,17 +99,20 @@ public class Find_Book extends AppCompatActivity {
                 {
                     for(ParseObject book:books )
                     {
+                        String email=book.getString("useremail");
                         System.out.println(book);
-                        booktitle.add(book.getString("title"));
-                        author.add(book.getString("author"));
-                        edition.add(book.getString("edition"));
-                        useremail.add(book.getString("useremail"));
+                        if(!(email.equalsIgnoreCase(MainActivity.email)))
+                        {
+                            booktitle.add(book.getString("title"));
+                            author.add(book.getString("author"));
+                            edition.add(book.getString("edition"));
+                            useremail.add(book.getString("useremail"));
+                        }
                     }
                 }
                 else
                 {
                     Log.d("No Books",e.toString());
-
                 }
                 System.out.println(booktitle);
                 find();
