@@ -27,48 +27,40 @@ import java.util.List;
 public class Activity_RequestRecieved extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    TextView bookname;
-    TextView username;
+    ArrayList<String> title=new ArrayList<String>();
+    ArrayList<String> senderemail=new ArrayList<String>();
     Button accept;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__request_recieved);
-        bookname=findViewById(R.id.booktitle);
-        //username=findViewById(R.id.user);
-        //accept=findViewById(R.id.accept);
-        /*ParseQuery<ParseObject> req=ParseQuery.getQuery("request");
-        req.whereEqualTo("recepientemial", MainActivity.email);
-        req.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject user, ParseException e) {
-                if(e==null) {
-                    System.out.println(user.getString("senderemail"));
-                    bookname.setText(user.getString("title"));
-                    username.setText(user.getString("senderemail"));
-                }
-                else {
-                    Log.d("Exception occured","e");
-                }
-            }
-        });*/
-
         recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-
-
-        List<ModelClass_Request> modelClassList_Request = new ArrayList<>();
-        modelClassList_Request.add(new ModelClass_Request( "i hate love story", "Samanth"));
-        modelClassList_Request.add(new ModelClass_Request( "i hate love story", "Samanth"));
-
-
-
-        Adapter_Request Adapter_Request = new Adapter_Request(modelClassList_Request);
-        recyclerView.setAdapter(Adapter_Request);
-        Adapter_Request.notifyDataSetChanged();
-
+        ParseQuery<ParseObject> req = ParseQuery.getQuery("request");
+        req.whereEqualTo("recepientemial", MainActivity.email);
+        req.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> requests, ParseException e) {
+                if (e == null) {
+                    for (ParseObject req : requests) {
+                        title.add(req.getString("title"));
+                        senderemail.add(req.getString("senderemail"));
+                    }
+                } else {
+                    //exception
+                }
+                List<ModelClass_Request> modelClassList_Request = new ArrayList<>();
+                for (int i = 0; i < title.size(); i++)
+                {
+                    modelClassList_Request.add(new ModelClass_Request(title.get((i)),senderemail.get(i)));
+                }
+                Adapter_Request Adapter_Request = new Adapter_Request(modelClassList_Request);
+                recyclerView.setAdapter(Adapter_Request);
+                Adapter_Request.notifyDataSetChanged();
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -114,28 +106,4 @@ public class Activity_RequestRecieved extends AppCompatActivity {
         }
     }
 
-    public void onClickMy_Request(View view) {
-        Intent requests = new Intent(this, Activity_RequestRecieved.class);
-        startActivityForResult(requests, 1);
-    }
-
-    public void onaccept(View view) {
-        ParseObject query1 = new ParseObject("Add_Book");
-        query1.put("title",bookname);
-        query1.put("senderemail",username);
-        query1.put("useremail",MainActivity.email);
-        query1.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e == null) {
-                    // Success
-                    //dlg.dismiss();
-                    //alertDisplayer("Book added successfully","");
-                } else {
-                    // Error
-                }
-            }
-        });
-        accept.setEnabled(false);
-    }
 }
