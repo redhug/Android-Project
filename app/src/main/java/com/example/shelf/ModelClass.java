@@ -6,12 +6,22 @@ public class ModelClass {
     private String title;
     private String author;
     private String edition;
+    private String image;
 
-    public ModelClass(int imageResource, String title, String author, String edition) {
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public ModelClass(int imageResource, String title, String author, String edition, String image) {
         this.imageResource = imageResource;
         this.title = title;
         this.author = author;
         this.edition = edition;
+        this.image = image;
     }
 
     public int getImageResource() {

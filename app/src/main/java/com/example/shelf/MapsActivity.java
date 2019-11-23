@@ -32,7 +32,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-       // mMap.setMyLocationEnabled(true);
+        // mMap.setMyLocationEnabled(true);
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -42,7 +42,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(booklocation).title("Book Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(booklocation));
         //CameraUpdate location = CameraUpdateFactory.newLatLngZoom(booklocation, 4.0f);
-       // mMap.animateCamera(location);
+        // mMap.animateCamera(location);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setRotateGesturesEnabled(true);
         mMap.getUiSettings().setScrollGesturesEnabled(true);

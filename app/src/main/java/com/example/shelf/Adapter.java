@@ -1,7 +1,10 @@
 package com.example.shelf;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
@@ -29,10 +33,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_layout,viewGroup,false);
         return new Viewholder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull Viewholder viewholder, int position) {
-        viewholder.imageView.setImageResource(modelClassList.get(position).getImageResource());
+        if(modelClassList.get(position).getImage()!=null && !modelClassList.get(position).getImage().equalsIgnoreCase("") ){
+            byte[] decodedString = Base64.decode(modelClassList.get(position).getImage().getBytes(), Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            viewholder.imageView.setImageBitmap(decodedByte);
+        }else{
+            viewholder.imageView.setImageResource(modelClassList.get(position).getImageResource());
+        }
         viewholder.title.setText(modelClassList.get(position).getTitle());
         viewholder.author.setText(modelClassList.get(position).getAuthor());
         viewholder.edition.setText(modelClassList.get(position).getEdition());
@@ -40,6 +49,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
         final String author=modelClassList.get(position).getAuthor();
         final String title=modelClassList.get(position).getTitle();
         final int imageView=modelClassList.get(position).getImageResource();
+        final String imageString=modelClassList.get(position).getImage();
+
         viewholder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,6 +59,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
                 in.putExtra("title",title);
                 in.putExtra("author", author);
                 in.putExtra("edition", edition);
+                in.putExtra("image", imageString);
                 view.getContext().startActivity(in);
             }
         });

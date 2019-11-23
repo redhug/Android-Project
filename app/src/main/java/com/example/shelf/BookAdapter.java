@@ -29,9 +29,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.Viewholder> {
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-       String text1=mymodel.get(position).getUsername();
-       String text2=mymodel.get(position).getBookname();
-       //Button acceptBTN=mymodel.get(position).getButton();
+        String text1=mymodel.get(position).getUsername();
+        String text2=mymodel.get(position).getBookname();
+        //Button acceptBTN=mymodel.get(position).getButton();
         holder.setData(text1,text2);
 
     }

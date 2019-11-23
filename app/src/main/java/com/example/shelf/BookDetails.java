@@ -1,7 +1,10 @@
 package com.example.shelf;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +19,7 @@ public class BookDetails extends AppCompatActivity {
     ImageView bookImage;
     String Title,Author,Edition;
     int ImageResourse;
+    String image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,7 @@ public class BookDetails extends AppCompatActivity {
         Title = getIntent().getStringExtra("title");
         Author = getIntent().getStringExtra("author");
         Edition = getIntent().getStringExtra("edition");
+        image = getIntent().getStringExtra("image");
         ImageResourse = getIntent().getIntExtra("imageView",1);
         titleTV = findViewById(R.id.titleTV);
         authorTV = findViewById(R.id.authorTV);
@@ -31,7 +36,14 @@ public class BookDetails extends AppCompatActivity {
         titleTV.setText(Title);
         authorTV.setText(Author);
         editionTV.setText(Edition);
-        bookImage.setImageResource(ImageResourse);
+        if(image!=null){
+            byte[] decodedString = Base64.decode(image.getBytes(), Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            bookImage.setImageBitmap(decodedByte);
+        }else{
+            bookImage.setImageResource(ImageResourse);
+        }
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

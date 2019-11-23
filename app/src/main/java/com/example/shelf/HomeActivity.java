@@ -29,7 +29,7 @@ public class HomeActivity extends AppCompatActivity {
     ArrayList<String>details=new ArrayList<String>();
     ArrayList<String>author=new ArrayList<String>();
     ArrayList<String>edition=new ArrayList<String>();
-
+    ArrayList<String>images=new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +55,15 @@ public class HomeActivity extends AppCompatActivity {
                         details.add(book.getString("title"));
                         author.add(book.getString("author"));
                         edition.add(book.getString("edition"));
+                        images.add(book.getString("image"));
+
+
                     }
                 }
                 System.out.println(details);
                 for(int i=0;i<details.size();i++)
                 {
-                    modelClassList.add(new ModelClass((R.drawable.bookimage),details.get(i), author.get(i),edition.get(i)));
+                    modelClassList.add(new ModelClass((R.drawable.bookimage),details.get(i), author.get(i),edition.get(i),images.get(i)));
                 }
                 Adapter adapter = new Adapter(modelClassList);
                 recyclerView.setAdapter(adapter);

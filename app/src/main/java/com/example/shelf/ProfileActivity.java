@@ -30,11 +30,11 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-         contact=findViewById(R.id.contact);
-         username=findViewById(R.id.username);
-         address=findViewById(R.id.address);
-         email=findViewById(R.id.email);
-         email.setText(MainActivity.email);
+        contact=findViewById(R.id.contact);
+        username=findViewById(R.id.username);
+        address=findViewById(R.id.address);
+        email=findViewById(R.id.email);
+        email.setText(MainActivity.email);
         ParseQuery<ParseUser> user=ParseUser.getQuery();
         user.whereEqualTo("email",MainActivity.email);
         user.findInBackground(new FindCallback<ParseUser>() {
