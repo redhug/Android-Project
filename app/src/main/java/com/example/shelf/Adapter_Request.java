@@ -13,9 +13,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+import static android.content.Intent.makeRestartActivityTask;
 
 public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewholder>  {
 
@@ -23,7 +30,6 @@ public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewho
 
     public Adapter_Request(List<ModelClass_Request> modelClassList_Request){
         this.modelClassList_Request = modelClassList_Request;
-
     }
 
     @NonNull
@@ -34,11 +40,12 @@ public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewho
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Adapter_Request.Viewholder viewholder, int position) {
+    public void onBindViewHolder(@NonNull final Adapter_Request.Viewholder viewholder, final int position) {
         viewholder.title.setText(modelClassList_Request.get(position).getTitle());
         viewholder.useremail.setText(modelClassList_Request.get(position).getUseremail());
         final String useremail=modelClassList_Request.get(position).getUseremail();
         final String title=modelClassList_Request.get(position).getTitle();
+        final  String obj=modelClassList_Request.get(position).getObjectid();
         viewholder.title.setText(modelClassList_Request.get(position).getTitle());
         viewholder.useremail.setText(modelClassList_Request.get(position).getUseremail());
 
@@ -51,7 +58,8 @@ public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewho
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Subject "+title);
                 intent.putExtra(Intent.EXTRA_TEXT, "your book request is accepted.");
                 v.getContext().startActivity(Intent.createChooser(intent, "Send Email"));
-
+                modelClassList_Request.remove(position);
+                deleterequest(obj);
             }
         });
         viewholder.rejectButton.setOnClickListener(new View.OnClickListener() {
@@ -60,14 +68,35 @@ public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewho
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/html");
                 intent.putExtra(Intent.EXTRA_EMAIL, to);
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Subject"+ title);
                 intent.putExtra(Intent.EXTRA_TEXT, "your book request is rejected.");
                 v.getContext().startActivity(Intent.createChooser(intent, "Send Email"));
-
+                deleterequest(obj);
             }
         });
     }
 
+    private void deleterequest(String obj) {
+        final boolean deleteAttributesOnly = true;
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("request");
+        query.getInBackground(obj, new GetCallback<ParseObject>() {
+            public void done(ParseObject object, ParseException e) {
+                if (e == null) {
+                    if (deleteAttributesOnly) {
+                        // If you want to undefine a specific field, do this:
+                        object.remove("senderemail");
+                        object.remove("title");
+                        object.remove("recepientemial");
+                        object.remove("requesttype");
+                        object.remove("status");
+                        object.saveInBackground();
+                    } else {
+                        object.deleteInBackground();
+                    }
+                }
+            }
+        });
+    }
     @Override
     public int getItemCount() {
         return modelClassList_Request.size();
@@ -89,10 +118,6 @@ public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewho
 
         }
 
-        private void setData(String titleText, String useremailText){
-            title.setText(titleText);
-            useremail.setText(useremailText);
-        }
     }
 
 }

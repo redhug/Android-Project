@@ -4,12 +4,13 @@ public class ModelClass_Request {
 
     private String title;
     private String useremail;
-    private String accept;
+    private String objectid;
     private String reject;
 
-    public ModelClass_Request(String title, String useremail) {
+    public ModelClass_Request(String title, String useremail, String objectid) {
         this.title = title;
         this.useremail = useremail;
+        this.objectid=objectid;
         //this.accept = accept;
         //this.reject = reject;
     }
@@ -21,11 +22,11 @@ public class ModelClass_Request {
     public String getUseremail() {
         return useremail;
     }
-    /* public String getAccept() {
-        return accept;
+     public String getObjectid() {
+        return objectid;
     }
 
-    public String getReject() {
-        return reject;
-    }*/
+//    public String getReject() {
+//        return reject;
+//    }
 }

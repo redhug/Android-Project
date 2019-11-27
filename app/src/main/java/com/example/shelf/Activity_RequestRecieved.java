@@ -29,6 +29,7 @@ public class Activity_RequestRecieved extends AppCompatActivity {
     private RecyclerView recyclerView;
     ArrayList<String> title=new ArrayList<String>();
     ArrayList<String> senderemail=new ArrayList<String>();
+    ArrayList<String> objectid=new ArrayList<String>();
     Button accept;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class Activity_RequestRecieved extends AppCompatActivity {
                     for (ParseObject req : requests) {
                         title.add(req.getString("title"));
                         senderemail.add(req.getString("senderemail"));
+                        objectid.add(req.getObjectId());
                     }
                 } else {
                     //exception
@@ -54,13 +56,14 @@ public class Activity_RequestRecieved extends AppCompatActivity {
                 List<ModelClass_Request> modelClassList_Request = new ArrayList<>();
                 for (int i = 0; i < title.size(); i++)
                 {
-                    modelClassList_Request.add(new ModelClass_Request(title.get((i)),senderemail.get(i)));
+                    modelClassList_Request.add(new ModelClass_Request(title.get((i)),senderemail.get(i),objectid.get(i)));
                 }
                 Adapter_Request Adapter_Request = new Adapter_Request(modelClassList_Request);
                 recyclerView.setAdapter(Adapter_Request);
                 Adapter_Request.notifyDataSetChanged();
             }
         });
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
