@@ -58,8 +58,7 @@ public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewho
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Subject "+title);
                 intent.putExtra(Intent.EXTRA_TEXT, "your book request is accepted.");
                 v.getContext().startActivity(Intent.createChooser(intent, "Send Email"));
-                modelClassList_Request.remove(position);
-                deleterequest(obj);
+                deleterequest(obj,position);
             }
         });
         viewholder.rejectButton.setOnClickListener(new View.OnClickListener() {
@@ -71,12 +70,12 @@ public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewho
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Subject"+ title);
                 intent.putExtra(Intent.EXTRA_TEXT, "your book request is rejected.");
                 v.getContext().startActivity(Intent.createChooser(intent, "Send Email"));
-                deleterequest(obj);
+                deleterequest(obj,position);
             }
         });
     }
 
-    private void deleterequest(String obj) {
+    private void deleterequest(String obj,int position) {
         final boolean deleteAttributesOnly = true;
         ParseQuery<ParseObject> query = ParseQuery.getQuery("request");
         query.getInBackground(obj, new GetCallback<ParseObject>() {
@@ -96,6 +95,8 @@ public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewho
                 }
             }
         });
+        modelClassList_Request.remove(position);
+        notifyDataSetChanged();
     }
     @Override
     public int getItemCount() {
