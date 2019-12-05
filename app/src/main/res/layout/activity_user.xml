@@ -32,19 +32,6 @@
         app:layout_constraintVertical_bias="0.308" />
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="242dp"
-        android:layout_height="180dp"
-        android:onClick="maps"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.854"
-        app:srcCompat="@drawable/maps" />
-
-    <ImageView
         android:id="@+id/imageView2"
         android:layout_width="110dp"
         android:layout_height="116dp"
@@ -131,17 +118,30 @@
 
     <TextView
         android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="174dp"
+        android:layout_height="34dp"
         android:text="User 1"
         android:textColor="#F70A0A0A"
-        android:textSize="30sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintHorizontal_bias="0.763"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121" />
+        app:layout_constraintVertical_bias="0.139" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="209dp"
+        android:layout_height="199dp"
+        android:onClick="maps"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.872"
+        app:srcCompat="@drawable/maps" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

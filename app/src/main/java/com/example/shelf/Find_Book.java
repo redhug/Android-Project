@@ -30,6 +30,7 @@ public class Find_Book extends AppCompatActivity {
     TextView authorname;
     TextView editionnumber;
     TextView email;
+    ArrayList<String>images=new ArrayList<String>();
     ArrayList<String> booktitle=new ArrayList<String>();
     ArrayList<String> author=new ArrayList<String>();
     ArrayList<String> edition=new ArrayList<String>();
@@ -107,6 +108,7 @@ public class Find_Book extends AppCompatActivity {
                             author.add(book.getString("author"));
                             edition.add(book.getString("edition"));
                             useremail.add(book.getString("useremail"));
+                            images.add(book.getString("image"));
                         }
                     }
                 }
@@ -140,7 +142,7 @@ public class Find_Book extends AppCompatActivity {
         }
         for(int i=0;i<booktitle.size();i++)
         {
-            modelClassList_findbook.add(new Modelclass_findbook(R.drawable.bookimage, booktitle.get(i), author.get(i),edition.get(i),useremail.get(i)));
+            modelClassList_findbook.add(new Modelclass_findbook((R.drawable.bookimage), booktitle.get(i), author.get(i),edition.get(i),useremail.get(i),images.get(i)));
         }
         Adaptor_findbook Adaptor_findbook = new Adaptor_findbook(modelClassList_findbook);
         recyclerView.setAdapter(Adaptor_findbook);
