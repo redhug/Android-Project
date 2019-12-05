@@ -3,10 +3,13 @@ package com.example.shelf;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.parse.ParseException;
@@ -22,6 +25,11 @@ public class resetpassword extends AppCompatActivity {
         setContentView(R.layout.activity_resetpassword);
         email=findViewById(R.id.resetemail);
     }
+        public void back(View v) {
+            Intent intent = new Intent(resetpassword.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
     public void resetpass(View view) {
         ParseUser.requestPasswordResetInBackground(email.getText().toString(),
                 new RequestPasswordResetCallback() {

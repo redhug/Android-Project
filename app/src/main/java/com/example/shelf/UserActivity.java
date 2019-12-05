@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -29,6 +30,7 @@ public class UserActivity extends AppCompatActivity {
     TextView email;
     TextView address;
     TextView username;
+    ImageView imageV;
     public static String bookuseraddress;
     public String useremail;
     public String btitle;
@@ -42,10 +44,12 @@ public class UserActivity extends AppCompatActivity {
         contact=findViewById(R.id.contact);
         address=findViewById(R.id.address);
         username=findViewById(R.id.username);
+        imageV=findViewById(R.id.imageView2);
         Intent intent=getIntent();
         useremail=intent.getStringExtra("email");
         btitle=intent.getStringExtra("title");
         email.setText(useremail);
+        imageV.setImageResource(R.drawable.profilepng);
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("email",useremail);
         query.findInBackground(new FindCallback<ParseUser>() {

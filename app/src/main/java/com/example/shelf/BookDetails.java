@@ -66,6 +66,10 @@ public class BookDetails extends AppCompatActivity {
                 Intent requests = new Intent(this, Activity_RequestRecieved.class);
                 startActivityForResult(requests, 1);
                 return(true);
+            case R.id.addBook:
+                Intent addbook = new Intent(this, Add_Book.class);
+                startActivityForResult(addbook, 1);
+                return(true);
             case R.id.profile:
                 Intent profile = new Intent(this, ProfileActivity.class);
                 startActivityForResult(profile, 1);
