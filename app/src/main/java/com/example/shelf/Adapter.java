@@ -14,49 +14,48 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
 
     private List<ModelClass> modelClassList;
 
-    public Adapter(List<ModelClass> modelClassList){
+    public Adapter(List<ModelClass> modelClassList) {
         this.modelClassList = modelClassList;
     }
-
 
 
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_layout,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_layout, viewGroup, false);
         return new Viewholder(view);
     }
+
     @Override
     public void onBindViewHolder(@NonNull Viewholder viewholder, int position) {
-        if(modelClassList.get(position).getImage()!=null && !modelClassList.get(position).getImage().equalsIgnoreCase("") ){
+        if (modelClassList.get(position).getImage() != null && !modelClassList.get(position).getImage().equalsIgnoreCase("")) {
             byte[] decodedString = Base64.decode(modelClassList.get(position).getImage().getBytes(), Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             viewholder.imageView.setImageBitmap(decodedByte);
-        }else{
+        } else {
             viewholder.imageView.setImageResource(modelClassList.get(position).getImageResource());
         }
         viewholder.title.setText(modelClassList.get(position).getTitle());
         viewholder.author.setText(modelClassList.get(position).getAuthor());
         viewholder.edition.setText(modelClassList.get(position).getEdition());
-        final String edition=modelClassList.get(position).getEdition();
-        final String author=modelClassList.get(position).getAuthor();
-        final String title=modelClassList.get(position).getTitle();
-        final int imageView=modelClassList.get(position).getImageResource();
-        final String imageString=modelClassList.get(position).getImage();
+        final String edition = modelClassList.get(position).getEdition();
+        final String author = modelClassList.get(position).getAuthor();
+        final String title = modelClassList.get(position).getTitle();
+        final int imageView = modelClassList.get(position).getImageResource();
+        final String imageString = modelClassList.get(position).getImage();
 
         viewholder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent in = new Intent(view.getContext(), BookDetails.class);
                 in.putExtra("imageView", imageView);
-                in.putExtra("title",title);
+                in.putExtra("title", title);
                 in.putExtra("author", author);
                 in.putExtra("edition", edition);
                 in.putExtra("image", imageString);
@@ -71,7 +70,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
     }
 
 
-    class Viewholder extends RecyclerView.ViewHolder{
+    class Viewholder extends RecyclerView.ViewHolder {
 
         private ImageView imageView;
         private TextView title;
@@ -88,7 +87,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
             itemView.setBackgroundColor(Color.WHITE);
         }
 
-        private void setData(int resource, String titleText, String authorText, String editionText){
+        private void setData(int resource, String titleText, String authorText, String editionText) {
             imageView.setImageResource(resource);
             title.setText(titleText);
             author.setText(authorText);

@@ -15,41 +15,40 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.Viewholder>  {
+public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.Viewholder> {
 
     private List<Modelclass_findbook> modelClassList_findbook;
 
-    public Adaptor_findbook(List<Modelclass_findbook> modelClassList_findbook){
+    public Adaptor_findbook(List<Modelclass_findbook> modelClassList_findbook) {
         this.modelClassList_findbook = modelClassList_findbook;
     }
-
 
 
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_layout_find_book,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_layout_find_book, viewGroup, false);
         return new Viewholder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder viewholder, int position) {
         viewholder.imageView.setImageResource(modelClassList_findbook.get(position).getImageResource());
-        if(modelClassList_findbook.get(position).getImage()!=null && !modelClassList_findbook.get(position).getImage().equalsIgnoreCase("") ){
+        if (modelClassList_findbook.get(position).getImage() != null && !modelClassList_findbook.get(position).getImage().equalsIgnoreCase("")) {
             byte[] decodedString = Base64.decode(modelClassList_findbook.get(position).getImage().getBytes(), Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             viewholder.imageView.setImageBitmap(decodedByte);
-        }else{
+        } else {
             viewholder.imageView.setImageResource(modelClassList_findbook.get(position).getImageResource());
         }
         viewholder.title.setText(modelClassList_findbook.get(position).getTitle());
         viewholder.author.setText(modelClassList_findbook.get(position).getAuthor());
         viewholder.edition.setText(modelClassList_findbook.get(position).getEdition());
         viewholder.useremail.setText(modelClassList_findbook.get(position).getUseremail());
-        final String useremail=modelClassList_findbook.get(position).getUseremail();
-        final String title=modelClassList_findbook.get(position).getTitle();
-        final int imageView=modelClassList_findbook.get(position).getImageResource();
-        final String imageString=modelClassList_findbook.get(position).getImage();
+        final String useremail = modelClassList_findbook.get(position).getUseremail();
+        final String title = modelClassList_findbook.get(position).getTitle();
+        final int imageView = modelClassList_findbook.get(position).getImageResource();
+        final String imageString = modelClassList_findbook.get(position).getImage();
         viewholder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,7 +66,7 @@ public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.View
     }
 
 
-    class Viewholder extends RecyclerView.ViewHolder{
+    class Viewholder extends RecyclerView.ViewHolder {
 
         private ImageView imageView;
         private TextView title;
@@ -85,7 +84,7 @@ public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.View
             useremail = itemView.findViewById(R.id.useremail);
         }
 
-        private void setData(int resource, String titleText, String authorText, String editionText,String useremailText){
+        private void setData(int resource, String titleText, String authorText, String editionText, String useremailText) {
             imageView.setImageResource(resource);
             title.setText(titleText);
             author.setText(authorText);
