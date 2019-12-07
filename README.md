@@ -13,8 +13,8 @@
 ## Test credentials:
 
 ### Credentials used for testing
-- Email-ID: reddysushma651@gmail.com
-- Password: reddy4548
+- Email-ID: byreddypavan.reddy@gmail.com
+- Password: 1234
  
 
 ## Sequence Information:
