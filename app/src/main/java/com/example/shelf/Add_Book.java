@@ -1,15 +1,10 @@
 package com.example.shelf;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,16 +17,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toolbar;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.parse.ParseException;
-import com.parse.SaveCallback;
 import com.parse.ParseObject;
+import com.parse.SaveCallback;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class Add_Book extends AppCompatActivity {
@@ -43,6 +38,7 @@ public class Add_Book extends AppCompatActivity {
     EditText bookCondition;
     Button submit;
     ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +49,7 @@ public class Add_Book extends AppCompatActivity {
         edition = findViewById(R.id.editText3);
         bookCondition = findViewById(R.id.editText4);
         submit = findViewById(R.id.button5);
-        imageView=findViewById(R.id.imageView);
+        imageView = findViewById(R.id.imageView);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +58,7 @@ public class Add_Book extends AppCompatActivity {
             }
         });
     }
+
     private void selectImage(Context context) {
         final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
 
@@ -127,6 +124,7 @@ public class Add_Book extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
     public String getEncoded64ImageStringFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
@@ -135,114 +133,110 @@ public class Add_Book extends AppCompatActivity {
         String imgString = Base64.encodeToString(byteFormat, Base64.NO_WRAP);
         return imgString;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.home:
                 Intent home = new Intent(this, HomeActivity.class);
                 startActivityForResult(home, 1);
-                return(true);
+                return (true);
             case R.id.findBook:
                 Intent findBook = new Intent(this, Find_Book.class);
                 startActivityForResult(findBook, 1);
-                return(true);
+                return (true);
             case R.id.requests:
                 Intent requests = new Intent(this, Activity_RequestRecieved.class);
                 startActivityForResult(requests, 1);
-                return(true);
+                return (true);
             case R.id.profile:
                 Intent profile = new Intent(this, ProfileActivity.class);
                 startActivityForResult(profile, 1);
-                return(true);
+                return (true);
         }
-        return(super.onOptionsItemSelected(item));
+        return (super.onOptionsItemSelected(item));
     }
 
     public void buttonSave_onClick(View v) {
-        final String btitle=bookTitle.getText().toString();
-        final String bisbn=isbn.getText().toString();
-        final String bauthor=author.getText().toString();
-        final String bedition=edition.getText().toString();
-        final String bcondition=bookCondition.getText().toString();
-        Bitmap bimage = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-        final String image=getEncoded64ImageStringFromBitmap(bimage);
-        boolean errors=false;
-        if(btitle.length()==0){
+        final String btitle = bookTitle.getText().toString();
+        final String bisbn = isbn.getText().toString();
+        final String bauthor = author.getText().toString();
+        final String bedition = edition.getText().toString();
+        final String bcondition = bookCondition.getText().toString();
+        Bitmap bimage = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+        final String image = getEncoded64ImageStringFromBitmap(bimage);
+        boolean errors = false;
+        if (btitle.length() == 0) {
             bookTitle.requestFocus();
             bookTitle.setError("cannot be empty!!");
-            errors=true;
+            errors = true;
         }
-        if(bauthor.length()==0){
+        if (bauthor.length() == 0) {
             author.requestFocus();
             author.setError("cannot be empty!!");
-            errors=true;
-        }
-        else if(!bauthor.matches("[a-zA-Z ]+"))
-        {
+            errors = true;
+        } else if (!bauthor.matches("[a-zA-Z ]+")) {
             author.requestFocus();
             author.setError("ENTER ONLY ALPHABETICAL CHARACTER");
-            errors=true;
+            errors = true;
         }
-        if(bisbn.length()==0){
+        if (bisbn.length() == 0) {
             isbn.requestFocus();
             isbn.setError("cannot be empty!!");
-            errors=true;
-        }
-        else if (!Pattern.matches("[0-9]+",bisbn)){
+            errors = true;
+        } else if (!Pattern.matches("[0-9]+", bisbn)) {
             isbn.requestFocus();
-            errors=true;
+            errors = true;
             isbn.setError("isbn field should contain only numerical values");
         }
-        if(bedition.length()==0){
+        if (bedition.length() == 0) {
             edition.requestFocus();
             edition.setError("cannot be empty!!");
-            errors=true;
-        }
-        else if (!Pattern.matches("[0-9]+",bedition)){
+            errors = true;
+        } else if (!Pattern.matches("[0-9]+", bedition)) {
             edition.requestFocus();
-            errors=true;
+            errors = true;
             isbn.setError("bedition field should contain only numerical values");
         }
-        if(bcondition.length()==0){
+        if (bcondition.length() == 0) {
             bookCondition.requestFocus();
             bookCondition.setError("cannot be empty!!");
-            errors=true;
-        }
-        else if(!bcondition.matches("[a-zA-Z ]+"))
-        {
+            errors = true;
+        } else if (!bcondition.matches("[a-zA-Z ]+")) {
             bookCondition.requestFocus();
             bookCondition.setError("ENTER ONLY ALPHABETICAL CHARACTER");
-            errors=true;
+            errors = true;
         }
 
-        if(!errors){
+        if (!errors) {
             final ProgressDialog dlg = new ProgressDialog(Add_Book.this);
             dlg.setTitle("Please, wait a moment.");
             dlg.setMessage("Adding Book...");
             dlg.show();
             ParseObject addbook = new ParseObject("Add_Book");
-            addbook.put("title",btitle.toUpperCase());
-            addbook.put("author",bauthor);
-            addbook.put("isbn",bisbn);
-            addbook.put("edition",bedition);
-            addbook.put("condition",bcondition);
-            addbook.put("useremail",MainActivity.email);
-            addbook.put("image",image);
+            addbook.put("title", btitle.toUpperCase());
+            addbook.put("author", bauthor);
+            addbook.put("isbn", bisbn);
+            addbook.put("edition", bedition);
+            addbook.put("condition", bcondition);
+            addbook.put("useremail", MainActivity.email);
+            addbook.put("image", image);
             addbook.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
                     if (e == null) {
                         // Success
                         dlg.dismiss();
-                        alertDisplayer("Book added successfully","");
+                        alertDisplayer("Book added successfully", "");
                     } else {
-                        Log.d("Exception occured","e");
+                        Log.d("Exception occured", "e");
                     }
                 }
             });
         }
     }
-    private void alertDisplayer(String title,String message){
+
+    private void alertDisplayer(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Add_Book.this)
                 .setTitle(title)
                 .setMessage(message)
