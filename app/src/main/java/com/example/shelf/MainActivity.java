@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
 
 
-
+// A login button is used for a user to login
         final Button login_button = findViewById(R.id.login);
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+// Signup button
         final Button signup_button = findViewById(R.id.Signup);
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+// forgot password button
         final Button reset = findViewById(R.id.forgotPassword);
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     }
-
+// Alert box is displayed
     private void alertDisplayer(String title,String message){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
                 .setTitle(title)

@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.Viewholder> {
-
+// A modalclasslist holding all the variables present in ModelClass
     private List<ModelClass> modelClassList;
 
     public Adapter(List<ModelClass> modelClassList) {

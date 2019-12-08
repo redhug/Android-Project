@@ -1,7 +1,7 @@
 package com.example.shelf;
 
 public class ModelClass {
-
+//declaring private instance variables of type integers and string
     private int imageResource;
     private String title;
     private String author;
@@ -15,7 +15,7 @@ public class ModelClass {
     public void setImage(String image) {
         this.image = image;
     }
-
+// Constructor with parameters of type integer and string
     public ModelClass(int imageResource, String title, String author, String edition, String image) {
         this.imageResource = imageResource;
         this.title = title;

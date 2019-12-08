@@ -1,12 +1,12 @@
 package com.example.shelf;
 
 public class ModelClass_Request {
-
+//declaring private instance variables
     private String title;
     private String useremail;
     private String objectid;
     private String reject;
-
+// A constructor with parameters of type string
     public ModelClass_Request(String title, String useremail, String objectid) {
         this.title = title;
         this.useremail = useremail;

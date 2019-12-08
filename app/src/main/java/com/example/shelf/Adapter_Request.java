@@ -18,7 +18,7 @@ import com.parse.ParseQuery;
 import java.util.List;
 
 public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewholder> {
-
+// A list holding all the variables declared in modelaclassrequest
     private List<ModelClass_Request> modelClassList_Request;
 
     public Adapter_Request(List<ModelClass_Request> modelClassList_Request) {
@@ -41,7 +41,7 @@ public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewho
         final String obj = modelClassList_Request.get(position).getObjectid();
         viewholder.title.setText(modelClassList_Request.get(position).getTitle());
         viewholder.useremail.setText(modelClassList_Request.get(position).getUseremail());
-
+// A button to accept the request sent by the user
         viewholder.acceptButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String to[] = {useremail};
@@ -54,6 +54,7 @@ public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewho
                 deleterequest(obj, position);
             }
         });
+        // A button to reject the request sent by the user
         viewholder.rejectButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String to[] = {useremail};
@@ -67,7 +68,7 @@ public class Adapter_Request extends RecyclerView.Adapter<Adapter_Request.Viewho
             }
         });
     }
-
+// A method to delete the request
     private void deleterequest(String obj, int position) {
         final boolean deleteAttributesOnly = true;
         ParseQuery<ParseObject> query = ParseQuery.getQuery("request");

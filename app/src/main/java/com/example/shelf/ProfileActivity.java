@@ -20,7 +20,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.List;
-
+// This class shows the personal information of the user
 public class ProfileActivity extends AppCompatActivity {
     TextView contact;
     TextView username;

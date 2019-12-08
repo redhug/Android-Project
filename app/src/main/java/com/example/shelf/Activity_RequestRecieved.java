@@ -27,7 +27,7 @@ public class Activity_RequestRecieved extends AppCompatActivity {
     ArrayList<String> senderemail = new ArrayList<String>();
     ArrayList<String> objectid = new ArrayList<String>();
     Button accept;
-
+// This method is used to recieve request sent from the user who wants the books
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

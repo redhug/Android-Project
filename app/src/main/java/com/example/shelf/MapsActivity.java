@@ -34,6 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         // mMap.setMyLocationEnabled(true);
     }
+    // Google maps to show the location of the user
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;

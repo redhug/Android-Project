@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class Add_Book extends AppCompatActivity {
-
+// declaring the edittexts, button, and image view
     EditText bookTitle;
     EditText author;
     EditText isbn;
@@ -58,7 +58,7 @@ public class Add_Book extends AppCompatActivity {
             }
         });
     }
-
+// This is a method to select image from galary or take live photo
     private void selectImage(Context context) {
         final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
 
@@ -69,15 +69,15 @@ public class Add_Book extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int item) {
-
+//to take live photo
                 if (options[item].equals("Take Photo")) {
                     Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(takePicture, 0);
-
+// choose image from gallery
                 } else if (options[item].equals("Choose from Gallery")) {
                     Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(pickPhoto, 1);//one can be replaced with any action code
-
+// if not the above two, then cancel
                 } else if (options[item].equals("Cancel")) {
                     dialog.dismiss();
                 }
@@ -156,7 +156,7 @@ public class Add_Book extends AppCompatActivity {
         }
         return (super.onOptionsItemSelected(item));
     }
-
+// This is a method to add book after entering all the details of the book
     public void buttonSave_onClick(View v) {
         final String btitle = bookTitle.getText().toString();
         final String bisbn = isbn.getText().toString();
@@ -165,6 +165,7 @@ public class Add_Book extends AppCompatActivity {
         final String bcondition = bookCondition.getText().toString();
         Bitmap bimage = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         final String image = getEncoded64ImageStringFromBitmap(bimage);
+     // validating all the fields
         boolean errors = false;
         if (btitle.length() == 0) {
             bookTitle.requestFocus();
@@ -235,7 +236,7 @@ public class Add_Book extends AppCompatActivity {
             });
         }
     }
-
+// Alert message will be displayed when the book is sucessfully added
     private void alertDisplayer(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(Add_Book.this)
                 .setTitle(title)

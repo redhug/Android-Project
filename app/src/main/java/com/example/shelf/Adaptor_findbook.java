@@ -16,7 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.Viewholder> {
-
+// A list holding all the variables declared in modelclassfindbook
+    
     private List<Modelclass_findbook> modelClassList_findbook;
 
     public Adaptor_findbook(List<Modelclass_findbook> modelClassList_findbook) {
@@ -41,6 +42,7 @@ public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.View
         } else {
             viewholder.imageView.setImageResource(modelClassList_findbook.get(position).getImageResource());
         }
+        // getting the positions of all variables and setting the positions using a viewholder
         viewholder.title.setText(modelClassList_findbook.get(position).getTitle());
         viewholder.author.setText(modelClassList_findbook.get(position).getAuthor());
         viewholder.edition.setText(modelClassList_findbook.get(position).getEdition());
@@ -67,7 +69,7 @@ public class Adaptor_findbook extends RecyclerView.Adapter<Adaptor_findbook.View
 
 
     class Viewholder extends RecyclerView.ViewHolder {
-
+// declaring private instance variables
         private ImageView imageView;
         private TextView title;
         private TextView author;

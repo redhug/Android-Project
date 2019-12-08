@@ -80,6 +80,7 @@ public class Find_Book extends AppCompatActivity {
         Intent ownerIntent = new Intent(this, UserActivity.class);
         startActivityForResult(ownerIntent, 1);
     }
+    // This method is used to search the book
     public void search(View view) {
         booktitle.clear();
         author.clear();
@@ -134,6 +135,7 @@ public class Find_Book extends AppCompatActivity {
 
         }
     }
+    // If no book is found, a toast message is displayed
     public void find(){
 
         if(booktitle.isEmpty())

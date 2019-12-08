@@ -2,7 +2,7 @@ package com.example.shelf;
 
 public class Modelclass_findbook {
 
-
+//declaring private instance variables of type int and string
     private int imageResource;
     private String title;
     private String author;
@@ -10,6 +10,7 @@ public class Modelclass_findbook {
     private String useremail;
     private String image;
 
+// A constructor with parameters of type int and string
     public Modelclass_findbook(int imageResource, String title, String author, String edition,String useremail,String image) {
         this.imageResource = imageResource;
         this.title = title;
